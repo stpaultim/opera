@@ -84,3 +84,12 @@
 .l-footer .block:first-child .drop-lounging:before {
   display: block;
 }
+
+@media (max-width: 48em) {
+  .l-footer .block-system-powered-by {
+    text-align: center;
+  }
+  .block {
+    margin-bottom:  20px;
+  }
+}

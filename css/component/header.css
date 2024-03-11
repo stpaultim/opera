@@ -146,7 +146,7 @@
 .l-header .menu a,
 .header-menu a {
   display: block;
-  padding: 0 1.25rem;
+  padding: 1rem 1.25rem;
 }
 .l-header .menu-toggle-button {
   margin-left: .9375rem;

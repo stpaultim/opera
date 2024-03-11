@@ -36,6 +36,12 @@ stylesheets[all][] = css/component/book.css
 stylesheets[all][] = css/component/recipes.css
 stylesheets[all][] = css/opera-component-colors.css
 
+; Remove unwanted core CSS
+stylesheets[all][] = system.theme.css
+stylesheets[all][] = menu-dropdown.theme.css
+stylesheets[all][] = menu-dropdown.theme.breakpoint.css
+stylesheets[all][] = menu-dropdown.theme.breakpoint-queries.css
+
 ; Custom for this theme
 
 stylesheets[all][] = css/block.css
