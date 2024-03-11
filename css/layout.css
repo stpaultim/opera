@@ -56,3 +56,10 @@
 .flexible-row {
   margin-bottom: 2rem;
 }
+
+@media (max-width: 48em) {
+  .l-wrapper-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
