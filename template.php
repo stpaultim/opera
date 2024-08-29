@@ -91,3 +91,38 @@ function opera_preprocess_header(&$variables) {
     $variables['logo_wrapper_classes'] = $logo_wrapper_classes;
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function opera_preprocess_page(&$variables) {
+  $no_old_ie_compatibility_modes = array(
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'http-equiv' => 'X-UA-Compatible',
+      'content' => 'IE=edge',
+    ),
+  );
+
+  // Add the Lato and Merriweather font to the header.
+  backdrop_add_html_head_link(array(
+    'rel' => 'preconnect',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.googleapis.com',
+  ));
+
+  backdrop_add_html_head_link(array(
+    'rel' => 'preconnect',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.gstatic.com',
+  ));
+
+  backdrop_add_html_head_link(array(
+    'rel' => 'stylesheet',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Merriweather:wght@300;400;700;900&display=swap',
+  ));
+}
