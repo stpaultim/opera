@@ -134,6 +134,68 @@ Text alignment
 - text-align-right
 - text-align-left
 
+Margin
+- m-10
+- m-20
+- m-30
+- mb-20
+- mb-30
+- mb-50
+- mt-20
+- mt-30
+- mt-50
+
+Padding
+- p-10
+- p-20
+- p-30
+- pb-20
+- pb-30
+- pb-50
+- pt-20
+- pt-30
+- pt-50
+
+Border
+- border
+- border-bottom
+- border-top
+- border-gray
+- border-gray-bottom
+- border-gray-top
+
+Flex
+- flex
+- flex-direction-column
+- flex-direction-row
+- space-between
+- gap-20
+- gap-30
+- gap-50
+- flex-basis
+- flex-basis-half
+- flex-basis-200
+- flex-basis-500
+- flex-basis-700
+
+Text Ellipse
+- text-ellipses-2
+- text-ellipses-4
+
+Text Decoration
+- text-decoration-none
+
+Display
+- d-none
+- d-block
+
+Column Count
+- column-count-2
+- column-count-3
+- column-rule
+- column-gap-50
+- column-gap-70
+
 ## Installation
 
 - Install this module using the official Backdrop CMS instructions at

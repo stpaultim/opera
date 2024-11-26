@@ -8,6 +8,10 @@
   margin: 0 0 1.5em;
 }
 
+.form-actions >.form-actions {
+  margin-top: 30px !important;
+}
+
 .form-type-email label,
 .form-type-file label,
 .form-type-password label,

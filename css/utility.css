@@ -306,3 +306,40 @@
   text-overflow: ellipsis;
 }
 
+/* Column count classes */
+
+.column-count-2 {
+  column-count: 2;
+}
+
+.column-count-3 {
+  column-count: 3;
+}
+
+.column-rule {
+  column-rule: 1px solid #dee2ea;
+}
+
+.column-gap-50 {
+  column-gap: 50px;
+}
+
+.column-gap-70 {
+  column-gap: 70px;
+}
+
+/* text decoration classes */
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+/* display classes */
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}

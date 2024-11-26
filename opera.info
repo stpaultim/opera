@@ -134,7 +134,6 @@ utility_css[border][] = 'border-gray'
 utility_css[border][] = 'border-gray-bottom'
 utility_css[border][] = 'border-gray-top'
 
-
 utility_css[flex][] = 'flex'
 utility_css[flex][] = 'flex-direction-column'
 utility_css[flex][] = 'flex-direction-row'
@@ -150,3 +149,14 @@ utility_css[flex][] = 'flex-basis-700'
 
 utility_css[text-ellipses][] = 'text-ellipses-2'
 utility_css[text-ellipses][] = 'text-ellipses-4'
+
+utility_css[text-decoration][] = 'text-decoration-none'
+
+utility_css[display][] = 'd-none'
+utility_css[display][] = 'd-block'
+
+utility_css[column-count][] = 'column-count-2'
+utility_css[column-count][] = 'column-count-3'
+utility_css[column-count][] = 'column-rule'
+utility_css[column-count][] = 'column-gap-50'
+utility_css[column-count][] = 'column-gap-70'
