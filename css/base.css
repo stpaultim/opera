@@ -78,10 +78,6 @@ img {
   height: auto;
 }
 
-.l-wrapper img {
-  border: 1px solid grey;
-}
-
 iframe {
   max-width: 100%;
 }
