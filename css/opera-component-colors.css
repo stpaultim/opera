@@ -212,15 +212,6 @@ ul.action-links a:after {
   background: #009dff;
 }
 
-/*  maintenance/.css  */
-
-.maintenance-page {
-  background: #bbb;
-}
-.maintenance-page .l-container {
-  background: #fff;
-}
-
 /*  components/menu-dropdown.css  */
 
 /*.menu-dropdown a span.sub-arrow {
