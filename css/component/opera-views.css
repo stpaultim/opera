@@ -8,6 +8,13 @@
   margin-bottom: 1.3rem;
 }
 
+/* Prevent decorative image shadow from applying to map tiles. */
+.view-content .gm-style img,
+.view-content .leaflet-container img {
+  filter: none;
+  margin-bottom: 0;
+}
+
 .view-blog-post .views-field-name {
   margin-bottom: 20px;
 }
