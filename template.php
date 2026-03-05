@@ -97,6 +97,27 @@ function opera_preprocess_header(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_maintenance_page().
+ */
+function opera_preprocess_maintenance_page(&$variables) {
+  // Optionally load Lato and Merriweather from Google Fonts.
+  if (theme_get_setting('use_google_fonts') !== 0) {
+    backdrop_add_html_head_link(array(
+      'rel' => 'preconnect',
+      'href' => 'https://fonts.googleapis.com',
+    ));
+    backdrop_add_html_head_link(array(
+      'rel' => 'preconnect',
+      'href' => 'https://fonts.gstatic.com',
+    ));
+    backdrop_add_html_head_link(array(
+      'rel' => 'stylesheet',
+      'href' => 'https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Merriweather:wght@300;400;700;900&display=swap',
+    ));
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function opera_preprocess_page(&$variables) {
