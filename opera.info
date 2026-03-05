@@ -5,6 +5,7 @@ backdrop = 1.x
 version = 1.x
 
 settings[use_bootstrap] = 0
+settings[use_google_fonts] = 1
 
 ; Add theme CSS files - from Tatsu (with edits)
 stylesheets[all][] = css/base.css

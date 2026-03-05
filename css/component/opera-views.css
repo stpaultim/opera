@@ -47,3 +47,13 @@
 .view-header {
   margin-bottom: 2rem;
 }
+
+/**
+ * Prevent the global table reset in base.css from breaking FullCalendar's
+ * grid layout, which relies on display: table for correct column/row sizing.
+ */
+.fc table {
+  display: table;
+  overflow-x: visible;
+  max-width: none;
+}
