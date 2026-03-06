@@ -14,6 +14,7 @@ $info = array(
   'variables_file' => 'css/opera-variables.css',
 
   'groups' => array(
+    'typography' => t('Typography'),
     'header'  => t('Header & Footer'),
     'hero'    => t('Hero Blocks'),
     'block_1' => t('Block Color Set 1'),
@@ -27,6 +28,20 @@ $info = array(
   ),
 
   'tokens' => array(
+
+    // Typography
+    'font-heading' => array(
+      'label'   => t('Heading font'),
+      'type'    => 'font',
+      'default' => "'Merriweather', Georgia, serif",
+      'group'   => 'typography',
+    ),
+    'font-body' => array(
+      'label'   => t('Body font'),
+      'type'    => 'font',
+      'default' => "'Lato', 'Helvetica Neue', Arial, sans-serif",
+      'group'   => 'typography',
+    ),
 
     // Header & Footer
     'color-primary' => array(

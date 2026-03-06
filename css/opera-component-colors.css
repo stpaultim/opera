@@ -15,10 +15,8 @@
 }
 
 .block-hero-no-image {
-  background-color: var(--color-hero);
-  background-image: url(../images/texture.png);
-  background-repeat: repeat;
-  background-position: center center;
+  background: var(--color-hero) url(../images/opera-house.png) no-repeat top center / cover;
+  background-blend-mode: normal;
   color: var(--color-hero-text);
 }
 

@@ -66,14 +66,14 @@ body.maintenance-page {
 
 /* Typography */
 .maintenance-container h1 {
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .maintenance-container p,
 .maintenance-container .content {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   line-height: 1.7;
   color: #333;

@@ -7,6 +7,9 @@
  */
 
 :root {
+  --font-heading: 'Merriweather', Georgia, serif;
+  --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
+
   --color-primary:      #6e0e0a;
   --color-primary-text: #fff6ff;
   --color-primary-link: #b2bc21;

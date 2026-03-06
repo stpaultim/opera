@@ -1,0 +1,66 @@
+.view-content caption {
+  caption-side: top;
+  padding-left: 0;
+}
+
+.view-content img {
+  filter: drop-shadow(3px 2px 5px gray);
+  margin-bottom: 1.3rem;
+}
+
+/* Prevent decorative image shadow from applying to map tiles. */
+.view-content .gm-style img,
+.view-content .leaflet-container img {
+  filter: none;
+  margin-bottom: 0;
+}
+
+.view-blog-post .views-field-name {
+  margin-bottom: 20px;
+}
+
+.views-view-grid .views-row, 
+.views-view-grid .views-grid-box {
+  padding: 1rem;
+  border: none;
+}
+
+.block-content .view-header {
+  padding: 1rem;
+}
+
+.views-field {
+  margin-bottom:  .5rem;
+}
+
+.views-exposed-widget .form-item {
+  margin-bottom:  .5rem;
+}
+
+.views-exposed-form .views-exposed-widget.views-reset-button {
+  display: block;
+}
+
+.views-exposed-form .views-exposed-widget {
+  padding: 0;
+}
+
+.view.container,
+.view .views-view-grid {
+  margin-left: -0.9375rem;
+  margin-right: -0.9375rem;
+}
+
+.view-header {
+  margin-bottom: 2rem;
+}
+
+/**
+ * Prevent the global table reset in base.css from breaking FullCalendar's
+ * grid layout, which relies on display: table for correct column/row sizing.
+ */
+.fc table {
+  display: table;
+  overflow-x: visible;
+  max-width: none;
+}

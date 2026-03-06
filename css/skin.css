@@ -5,7 +5,7 @@
  * Component styles in this file are simple overrides for easy updating.
  */
 body {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   /**
    * Default font size for site should be set on body element in rem units.
    * This is better for some accessibility technologies. Although it's not true
@@ -867,10 +867,6 @@ ul.action-links a {
 /* Default background when hero doesn't have image */
 .block-hero-no-image {
   background-color: #0074bd;
-  background-image: url(../images/texture.png);
-  background-repeat: repeat;
-  background-position: center center;
-  background-blend-mode: luminosity; /* Colorizes bg image */
 }
 
 .no-background-blend-mode .block-hero-no-image:before {
