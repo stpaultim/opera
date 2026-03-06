@@ -1,45 +1,308 @@
-/* 
- * These are the rules to manage the blocks on the front page only.
+/*
+ * Front page block color sequencing.
+ *
+ * The first and last blocks in the content region are always white.
+ * Middle blocks cycle through a color sequence. The sequence length is
+ * controlled by the block_color_sequence theme setting, which adds a
+ * block-sequence-N class to the layout element.
+ *
+ * Supported sequence lengths: 2-8.
  */
 
+/* First block: always white regardless of sequence. */
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) {
   background-color: white;
   color: black;
 }
-
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+2) {
-  background-color: var(--color-three);
-  color: var(--text-three);
-}
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+3) {
-  background-color: var(--color-four);
-  color: var(--text-four);
-}
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+4) {
-  background-color: var(--color-five);
-  color: var(--text-five);
-}
-
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) a {
   color: black;
 }
 
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+2) a {
-  color: var(--text-three);
-}
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+3) a {
-  color: var(--text-four);
-}
-.layout--boxton.layout-front .l-content div.block:nth-of-type(3n+4) a {
-  color: var(--text-five);
-}
-
-
+/* Last block: always white regardless of sequence. */
 .layout--boxton.layout-front .l-content div.block:last-of-type {
   background-color: white;
   color: black;
 }
-
 .layout--boxton.layout-front .l-content div.block:last-of-type a {
   color: inherit;
+}
+
+/* =====================================================================
+   Sequence of 2
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a {
+  color: var(--color-block-2-link);
+}
+
+/* =====================================================================
+   Sequence of 3 (default)
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a {
+  color: var(--color-block-3-link);
+}
+
+/* =====================================================================
+   Sequence of 4
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a {
+  color: var(--color-block-3-link);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) {
+  background-color: var(--color-block-4);
+  color: var(--color-block-4-text);
+}
+.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a {
+  color: var(--color-block-4-link);
+}
+
+/* =====================================================================
+   Sequence of 5
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a {
+  color: var(--color-block-3-link);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) {
+  background-color: var(--color-block-4);
+  color: var(--color-block-4-text);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a {
+  color: var(--color-block-4-link);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) {
+  background-color: var(--color-block-5);
+  color: var(--color-block-5-text);
+}
+.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a {
+  color: var(--color-block-5-link);
+}
+
+/* =====================================================================
+   Sequence of 6
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a {
+  color: var(--color-block-3-link);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) {
+  background-color: var(--color-block-4);
+  color: var(--color-block-4-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a {
+  color: var(--color-block-4-link);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) {
+  background-color: var(--color-block-5);
+  color: var(--color-block-5-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a {
+  color: var(--color-block-5-link);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) {
+  background-color: var(--color-block-6);
+  color: var(--color-block-6-text);
+}
+.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a {
+  color: var(--color-block-6-link);
+}
+
+/* =====================================================================
+   Sequence of 7
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a {
+  color: var(--color-block-3-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) {
+  background-color: var(--color-block-4);
+  color: var(--color-block-4-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a {
+  color: var(--color-block-4-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) {
+  background-color: var(--color-block-5);
+  color: var(--color-block-5-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a {
+  color: var(--color-block-5-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) {
+  background-color: var(--color-block-6);
+  color: var(--color-block-6-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a {
+  color: var(--color-block-6-link);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) {
+  background-color: var(--color-block-7);
+  color: var(--color-block-7-text);
+}
+.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a {
+  color: var(--color-block-7-link);
+}
+
+/* =====================================================================
+   Sequence of 8
+   ===================================================================== */
+
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) {
+  background-color: var(--color-block-1);
+  color: var(--color-block-1-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a {
+  color: var(--color-block-1-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) {
+  background-color: var(--color-block-2);
+  color: var(--color-block-2-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a {
+  color: var(--color-block-2-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) {
+  background-color: var(--color-block-3);
+  color: var(--color-block-3-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a {
+  color: var(--color-block-3-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) {
+  background-color: var(--color-block-4);
+  color: var(--color-block-4-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a {
+  color: var(--color-block-4-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) {
+  background-color: var(--color-block-5);
+  color: var(--color-block-5-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a {
+  color: var(--color-block-5-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) {
+  background-color: var(--color-block-6);
+  color: var(--color-block-6-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a {
+  color: var(--color-block-6-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) {
+  background-color: var(--color-block-7);
+  color: var(--color-block-7-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a {
+  color: var(--color-block-7-link);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) {
+  background-color: var(--color-block-8);
+  color: var(--color-block-8-text);
+}
+.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a {
+  color: var(--color-block-8-link);
 }

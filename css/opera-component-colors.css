@@ -5,18 +5,21 @@
 
 .l-header,
 .l-footer {
-  background-color: var(--color-one);
-  color: var(--text-one);
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
 }
 
 .l-header a,
 .l-footer a {
-  color: var(--link-one);
+  color: var(--color-primary-link);
 }
 
 .block-hero-no-image {
-  background-color: var(--color-two);
-  color: var(--text-two);
+  background-color: var(--color-hero);
+  background-image: url(../images/texture.png);
+  background-repeat: repeat;
+  background-position: center center;
+  color: var(--color-hero-text);
 }
 
 /**
@@ -186,21 +189,8 @@ ul.action-links a:after {
 
 /*  components/hero.css  */
 
-.block-hero-no-image {
-  background: url(../images/texture.png) repeat center center;
-}
-
 .no-background-blend-mode .block-hero-no-image:before {
-  background: #009dff;
-}
-
-/*  maintenance/.css  */
-
-.maintenance-page {
-  background: #bbb;
-}
-.maintenance-page .l-container {
-  background: #fff;
+  background: var(--color-hero);
 }
 
 /*  components/menu-dropdown.css  */

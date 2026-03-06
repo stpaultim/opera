@@ -26,6 +26,8 @@ stylesheets[all][] = css/component/admin-tabs.css
 stylesheets[all][] = css/component/breadcrumb.css
 stylesheets[all][] = css/component/pager.css
 stylesheets[all][] = css/component/hero.css
+stylesheets[all][] = css/component/maintenance.css
+stylesheets[all][] = css/component/cards.css
 stylesheets[all][] = css/component/teasers.css
 stylesheets[all][] = css/component/comment.css
 stylesheets[all][] = css/component/caption.css
@@ -47,6 +49,5 @@ scripts[] = js/scripts.js
 ; will be available as autocomplete in the block UI where users are allowed to add classes.
 utility_css[recipes][] = 'info-block'
 
-; We need at least one setting for the theme settings page to appear in the
-; menu. Color module provides our defaults, so we just register a dummy setting.
-settings[color] = true
+settings[use_google_fonts] = 1
+settings[block_color_sequence] = 3

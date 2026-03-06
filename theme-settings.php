@@ -1,94 +1,52 @@
 <?php
 /**
  * @file
- * Theme settings file for Basis.
- *
- * Although Basis itself does not provide any settings, we use this file to
- * inform the user that the module supports color schemes if the Color module
- * is enabled.
+ * Theme settings file for Opera.
  */
 
-if (module_exists('color')) {
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
-  // Color Set One
-  $form['set_one'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Header and Footer'),
-    '#collapsible' => TRUE,
+  $form['colors'] = array(
+    '#type' => 'markup',
+    '#markup' => '<p>' . t('Configure colors for this theme on the <a href="!url">Theme Tokens</a> page.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
   );
-  $fields = array(
-    'set1bg',
-    'set1text',
-    'set1links',
-  );
-  foreach ($fields as $field) {
-    $form['set_one'][$field] = color_get_color_element($form['theme']['#value'], $field, $form);
-  }
 
-  // Color Set Two
-  $form['set_two'] = array(
+  $form['front_page'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Hero Blocks without Images'),
+    '#title' => t('Front Page Block Colors'),
     '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#description' => t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Theme Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera'))),
   );
-  $fields = array(
-    'set2bg',
-    'set2text',
-    'set2links',
+  $form['front_page']['block_color_sequence'] = array(
+    '#type' => 'select',
+    '#title' => t('Color sequence length'),
+    '#options' => array(
+      '2' => t('2'),
+      '3' => t('3'),
+      '4' => t('4'),
+      '5' => t('5'),
+      '6' => t('6'),
+      '7' => t('7'),
+      '8' => t('8'),
+    ),
+    '#default_value' => (string) (theme_get_setting('block_color_sequence', 'opera') ?: 3),
+    '#description' => t('Number of distinct block colors before the sequence repeats.'),
   );
-  foreach ($fields as $field) {
-    $form['set_two'][$field] = color_get_color_element($form['theme']['#value'], $field, $form);
-  }
 
-  // Color Set Three
-  $form['set_three'] = array(
+  $form['fonts'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Blocks - Set 1'),
+    '#title' => t('Font Settings'),
     '#collapsible' => TRUE,
-    '#description' => 'Blocks 2,5,8,... of content region.',
+    '#collapsed' => TRUE,
   );
-  $fields = array(
-    'set3bg',
-    'set3text',
-    'set3links',
-  );
-  foreach ($fields as $field) {
-    $form['set_three'][$field] = color_get_color_element($form['theme']['#value'], $field, $form);
-  }
-
-  // Color Set Four
-  $form['set_four'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Blocks - Set 2'),
-    '#collapsible' => TRUE,
-    '#description' => 'Blocks 3,6,9,... of content region.',
-  );
-  $fields = array(
-    'set4bg',
-    'set4text',
-    'set4links',
-  );
-  foreach ($fields as $field) {
-    $form['set_four'][$field] = color_get_color_element($form['theme']['#value'], $field, $form);
-  }
-   // Color Set Five
-  $form['set_five'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Blocks - Set 3'),
-    '#collapsible' => TRUE,
-    '#description' => 'Blocks 4,7,10,... of content region.',
-  );
-  $fields = array(
-    'set5bg',
-    'set5text',
-    'set5links',
-  );
-  foreach ($fields as $field) {
-    $form['set_five'][$field] = color_get_color_element($form['theme']['#value'], $field, $form);
-  }
-}
-else {
-  $form['color'] = array(
-    '#markup' => '<p>' . t('This theme supports custom color palettes if the Color module is enabled on the <a href="!url">modules page</a>. Enable the Color module to customize this theme.', array('!url' => url('admin/modules'))) . '</p>',
+  $form['fonts']['use_google_fonts'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Load Google Fonts (Lato & Merriweather)'),
+    '#description' => t('Disable to prevent requests to Google servers, e.g. for GDPR compliance.'),
+    '#default_value' => theme_get_setting('use_google_fonts', 'opera') !== 0,
   );
 }

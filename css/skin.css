@@ -335,12 +335,12 @@ fieldset .fieldset-legend {
   }
 
   .js .menu-dropdown > li:hover {
-    background-color: var(--color-one);
+    background-color: var(--color-primary);
     filter: brightness(80%);
     color: white;
   }
   .js .menu-dropdown > li:hover a {
-    color: var(--link-one);
+    color: var(--color-primary-link);
   }
 
   .js .block-system-main-menu .menu-dropdown > li.has-children > a:hover,
