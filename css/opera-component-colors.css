@@ -10,7 +10,9 @@
 }
 
 .l-header a,
-.l-footer a {
+.l-footer a,
+.l-header a:visited,
+.l-footer a:visited {
   color: var(--color-primary-link);
 }
 

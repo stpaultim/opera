@@ -545,6 +545,18 @@ button.form-submit,
   border-radius: var(--button-border-radius, 0);
 }
 
+/* Explicitly override :link and :visited so browser visited-link color
+   never bleeds into button appearance regardless of href history. */
+.button:link,
+.button:visited,
+input.button-primary:link,
+input.button-primary:visited,
+button.button-primary:link,
+button.button-primary:visited {
+  color: var(--button-text, #ffffff);
+  text-decoration: none;
+}
+
 .button:hover,
 .button:focus,
 input.form-submit:hover,

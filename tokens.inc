@@ -23,8 +23,8 @@ $info = array(
       'description' => t('Controls the appearance of primary buttons and form submit buttons across the site.'),
     ),
     'links' => array(
-      'label' => t('Links'),
-      'description' => t('Controls the color and underline behavior of body links — links in the main content area, not within colored header or block regions.'),
+      'label' => t('Body Text & Links'),
+      'description' => t('Controls link colors and underline behavior for body content, plus the default and inverted text colors used automatically on colored blocks based on background brightness.'),
     ),
     'header' => array(
       'label' => t('Header & Footer'),
@@ -120,13 +120,31 @@ $info = array(
     'link-text-decoration' => array(
       'label'   => t('Underline'),
       'type'    => 'text',
-      'default' => 'underline',
+      'default' => 'none',
       'group'   => 'links',
     ),
     'link-text-decoration-hover' => array(
       'label'   => t('Underline (hover)'),
       'type'    => 'text',
       'default' => 'underline',
+      'group'   => 'links',
+    ),
+    'link-color-inverted' => array(
+      'label'   => t('Link color (on dark backgrounds)'),
+      'type'    => 'color',
+      'default' => '#f0e6b8',
+      'group'   => 'links',
+    ),
+    'color-text-default' => array(
+      'label'   => t('Block text (on light backgrounds)'),
+      'type'    => 'color',
+      'default' => '#1a1a1a',
+      'group'   => 'links',
+    ),
+    'color-text-inverted' => array(
+      'label'   => t('Block text (on dark backgrounds)'),
+      'type'    => 'color',
+      'default' => '#ffffff',
       'group'   => 'links',
     ),
 
@@ -180,19 +198,6 @@ $info = array(
       'group'   => 'block_1',
       'utility' => TRUE,
     ),
-    'color-block-1-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#002002',
-      'group'   => 'block_1',
-    ),
-    'color-block-1-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#b2bc23',
-      'group'   => 'block_1',
-    ),
-
     // Block Color Set 2 (Tenor)
     'color-block-2' => array(
       'label'   => t('Background'),
@@ -201,19 +206,6 @@ $info = array(
       'group'   => 'block_2',
       'utility' => TRUE,
     ),
-    'color-block-2-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#fff4ff',
-      'group'   => 'block_2',
-    ),
-    'color-block-2-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#b2bc24',
-      'group'   => 'block_2',
-    ),
-
     // Block Color Set 3
     'color-block-3' => array(
       'label'   => t('Background'),
@@ -222,19 +214,6 @@ $info = array(
       'group'   => 'block_3',
       'utility' => TRUE,
     ),
-    'color-block-3-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#fffff5',
-      'group'   => 'block_3',
-    ),
-    'color-block-3-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#b2bc25',
-      'group'   => 'block_3',
-    ),
-
     // Block Color Set 4
     'color-block-4' => array(
       'label'   => t('Background'),
@@ -243,19 +222,6 @@ $info = array(
       'group'   => 'block_4',
       'utility' => TRUE,
     ),
-    'color-block-4-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#ffffff',
-      'group'   => 'block_4',
-    ),
-    'color-block-4-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#c8f5cb',
-      'group'   => 'block_4',
-    ),
-
     // Block Color Set 5
     'color-block-5' => array(
       'label'   => t('Background'),
@@ -264,19 +230,6 @@ $info = array(
       'group'   => 'block_5',
       'utility' => TRUE,
     ),
-    'color-block-5-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#ffffff',
-      'group'   => 'block_5',
-    ),
-    'color-block-5-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#f0c8f5',
-      'group'   => 'block_5',
-    ),
-
     // Block Color Set 6
     'color-block-6' => array(
       'label'   => t('Background'),
@@ -285,19 +238,6 @@ $info = array(
       'group'   => 'block_6',
       'utility' => TRUE,
     ),
-    'color-block-6-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#ffffff',
-      'group'   => 'block_6',
-    ),
-    'color-block-6-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#c8f5f5',
-      'group'   => 'block_6',
-    ),
-
     // Block Color Set 7
     'color-block-7' => array(
       'label'   => t('Background'),
@@ -306,19 +246,6 @@ $info = array(
       'group'   => 'block_7',
       'utility' => TRUE,
     ),
-    'color-block-7-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#ffffff',
-      'group'   => 'block_7',
-    ),
-    'color-block-7-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#f5e6c8',
-      'group'   => 'block_7',
-    ),
-
     // Block Color Set 8
     'color-block-8' => array(
       'label'   => t('Background'),
@@ -326,18 +253,6 @@ $info = array(
       'default' => '#5c1a1a',
       'group'   => 'block_8',
       'utility' => TRUE,
-    ),
-    'color-block-8-text' => array(
-      'label'   => t('Text'),
-      'type'    => 'color',
-      'default' => '#f5f5f5',
-      'group'   => 'block_8',
-    ),
-    'color-block-8-link' => array(
-      'label'   => t('Links'),
-      'type'    => 'color',
-      'default' => '#f5c8c8',
-      'group'   => 'block_8',
     ),
   ),
 
@@ -354,14 +269,8 @@ $info = array(
         'color-hero-text'    => '#002000',
         'color-hero-link'    => '#b2bc22',
         'color-block-1'      => '#f2bb05',
-        'color-block-1-text' => '#002002',
-        'color-block-1-link' => '#b2bc23',
         'color-block-2'      => '#124e78',
-        'color-block-2-text' => '#fff4ff',
-        'color-block-2-link' => '#b2bc24',
         'color-block-3'      => '#d74e09',
-        'color-block-3-text' => '#fffff5',
-        'color-block-3-link' => '#b2bc25',
       ),
     ),
 
@@ -376,14 +285,8 @@ $info = array(
         'color-hero-text'    => '#0d1b2a',
         'color-hero-link'    => '#1c6ea4',
         'color-block-1'      => '#94d3c9',
-        'color-block-1-text' => '#001012',
-        'color-block-1-link' => '#1c2541',
         'color-block-2'      => '#0b132b',
-        'color-block-2-text' => '#fef4ff',
-        'color-block-2-link' => '#7ec8c8',
         'color-block-3'      => '#3a506b',
-        'color-block-3-text' => '#f0faff',
-        'color-block-3-link' => '#7ec8c8',
       ),
     ),
 
@@ -398,14 +301,8 @@ $info = array(
         'color-hero-text'    => '#2d3436',
         'color-hero-link'    => '#c0392b',
         'color-block-1'      => '#f39c12',
-        'color-block-1-text' => '#1a1a1a',
-        'color-block-1-link' => '#c0392b',
         'color-block-2'      => '#27ae60',
-        'color-block-2-text' => '#ffffff',
-        'color-block-2-link' => '#f9ca24',
         'color-block-3'      => '#2980b9',
-        'color-block-3-text' => '#ffffff',
-        'color-block-3-link' => '#f9ca24',
       ),
     ),
 
@@ -420,14 +317,8 @@ $info = array(
         'color-hero-text'    => '#c0c0c0',
         'color-hero-link'    => '#e94560',
         'color-block-1'      => '#0f3460',
-        'color-block-1-text' => '#e0e0e0',
-        'color-block-1-link' => '#e94560',
         'color-block-2'      => '#533483',
-        'color-block-2-text' => '#f0f0f0',
-        'color-block-2-link' => '#e94560',
         'color-block-3'      => '#232020',
-        'color-block-3-text' => '#d0d0d0',
-        'color-block-3-link' => '#e94560',
       ),
     ),
   ),
