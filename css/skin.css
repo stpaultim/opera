@@ -17,12 +17,18 @@ body {
 }
 
 a {
-  color: #0073bd;
+  color: var(--link-color, #6e0e0a);
+  text-decoration: var(--link-text-decoration, underline);
 }
 
 a:focus,
 a:hover {
-  text-decoration: underline;
+  color: var(--link-color-hover, #580b08);
+  text-decoration: var(--link-text-decoration-hover, underline);
+}
+
+a:visited {
+  color: var(--link-color-visited, #551a8b);
 }
 
 a:active {
@@ -531,25 +537,27 @@ input.form-submit,
 button.form-submit,
 .button {
   text-align: center;
-  text-transform: uppercase;
-  color: #333333;
+  text-transform: var(--button-text-transform, uppercase);
+  color: var(--button-text, #ffffff);
   letter-spacing: 0.025em;
   line-height: 1.9;
-  background: #d5d5d5;
+  background: var(--button-bg, #6e0e0a);
+  border-radius: var(--button-border-radius, 0);
 }
 
 .button:hover,
 .button:focus,
 input.form-submit:hover,
 input.form-submit:focus {
-  color: #333333;
-  background: #d5d5d5;
+  color: var(--button-text, #ffffff);
+  background: var(--button-bg-hover, #580b08);
 }
 
 .button:active,
 input.form-submit:active {
-  color: #333333;
-  background: #d5d5d5;
+  color: var(--button-text, #ffffff);
+  background: var(--button-bg-hover, #580b08);
+  filter: brightness(0.9);
 }
 
 .button,
@@ -559,24 +567,25 @@ button.button-primary,
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-  color: white;
-  background: #0074bd;
+  color: var(--button-text, #ffffff);
+  background: var(--button-bg, #6e0e0a);
   border: none;
+  border-radius: var(--button-border-radius, 0);
 }
 
 input.button-primary:hover,
 input.button-primary:focus,
 button.button-primary:hover,
 button.button-primary:focus {
-  color: white;
-  background-color: #114a75;
+  color: var(--button-text, #ffffff);
+  background-color: var(--button-bg-hover, #580b08);
 }
 
 input.button-primary:active,
 button.button-primary:active {
-  box-shadow: inset 0 0 0 0.125em #114a75;
-  background-color: #0074bd;
-  color: white;
+  background-color: var(--button-bg-hover, #580b08);
+  color: var(--button-text, #ffffff);
+  filter: brightness(0.9);
 }
 
 input.button-secondary,

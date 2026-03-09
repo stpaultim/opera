@@ -25,13 +25,13 @@ function opera_preprocess_layout(&$variables) {
 }
 
 /**
- * Implements hook_theme_tokens_info_alter().
+ * Implements hook_design_tokens_info_alter().
  *
- * Hides block color groups in the Theme Tokens UI that exceed the
+ * Hides block color groups in the Design Tokens UI that exceed the
  * current block_color_sequence setting, so admins only see the slots
  * that are actually in use.
  */
-function opera_theme_tokens_info_alter(array &$info, $theme_name) {
+function opera_design_tokens_info_alter(array &$info, $theme_name) {
   if ($theme_name !== 'opera') {
     return;
   }
@@ -56,7 +56,7 @@ function opera_theme_tokens_info_alter(array &$info, $theme_name) {
  * Implements hook_preprocess_maintenance_page().
  */
 function opera_preprocess_maintenance_page(&$variables) {
-  // Google Fonts are loaded dynamically by the Theme Tokens Font module based
+  // Google Fonts are loaded dynamically by the Design Tokens Font module based
   // on which fonts are configured. No hardcoded fonts needed here.
 }
 
@@ -64,7 +64,7 @@ function opera_preprocess_maintenance_page(&$variables) {
  * Implements hook_preprocess_page().
  */
 function opera_preprocess_page(&$variables) {
-  // Google Fonts are loaded dynamically by the Theme Tokens Font module based
+  // Google Fonts are loaded dynamically by the Design Tokens Font module based
   // on which fonts are configured. No hardcoded fonts needed here.
 }
 

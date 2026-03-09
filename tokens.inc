@@ -14,10 +14,30 @@ $info = array(
   'variables_file' => 'css/opera-variables.css',
 
   'groups' => array(
-    'typography' => t('Typography'),
-    'header'  => t('Header & Footer'),
-    'hero'    => t('Hero Blocks'),
-    'block_1' => t('Block Color Set 1'),
+    'typography' => array(
+      'label' => t('Typography'),
+      'description' => t('Fonts used for headings and body text across the site.'),
+    ),
+    'buttons' => array(
+      'label' => t('Buttons'),
+      'description' => t('Controls the appearance of primary buttons and form submit buttons across the site.'),
+    ),
+    'links' => array(
+      'label' => t('Links'),
+      'description' => t('Controls the color and underline behavior of body links — links in the main content area, not within colored header or block regions.'),
+    ),
+    'header' => array(
+      'label' => t('Header & Footer'),
+      'description' => t('Colors for the site header and footer regions, including the site name, navigation links, and footer text.'),
+    ),
+    'hero' => array(
+      'label' => t('Hero Blocks'),
+      'description' => t('Colors for hero blocks that do not have a custom background image. These appear as a colored banner at the top of the page.'),
+    ),
+    'block_1' => array(
+      'label' => t('Block Color Set 1'),
+      'description' => t('On the front page, blocks in the content region cycle through these color sets. The first and last blocks are always white. Middle blocks rotate through the numbered sets (1 &rarr; 2 &rarr; 3 &rarr; 1 &rarr; 2 &rarr; 3&hellip;). You can change the number of sets being used in the <a href="!settings_url">theme settings</a>.', array('!settings_url' => url('admin/appearance/settings/opera'))),
+    ),
     'block_2' => t('Block Color Set 2'),
     'block_3' => t('Block Color Set 3'),
     'block_4' => t('Block Color Set 4'),
@@ -35,12 +55,79 @@ $info = array(
       'type'    => 'font',
       'default' => "'Merriweather', Georgia, serif",
       'group'   => 'typography',
+      'utility' => TRUE,
     ),
     'font-body' => array(
       'label'   => t('Body font'),
       'type'    => 'font',
       'default' => "'Lato', 'Helvetica Neue', Arial, sans-serif",
       'group'   => 'typography',
+      'utility' => TRUE,
+    ),
+
+    // Buttons
+    'button-bg' => array(
+      'label'   => t('Background'),
+      'type'    => 'color',
+      'default' => '#6e0e0a',
+      'group'   => 'buttons',
+      'utility' => TRUE,
+    ),
+    'button-text' => array(
+      'label'   => t('Text'),
+      'type'    => 'color',
+      'default' => '#ffffff',
+      'group'   => 'buttons',
+    ),
+    'button-bg-hover' => array(
+      'label'   => t('Background (hover)'),
+      'type'    => 'color',
+      'default' => '#580b08',
+      'group'   => 'buttons',
+    ),
+    'button-border-radius' => array(
+      'label'   => t('Border radius'),
+      'type'    => 'text',
+      'default' => '0',
+      'group'   => 'buttons',
+    ),
+    'button-text-transform' => array(
+      'label'   => t('Text transform'),
+      'type'    => 'text',
+      'default' => 'uppercase',
+      'group'   => 'buttons',
+    ),
+
+    // Links
+    'link-color' => array(
+      'label'   => t('Color'),
+      'type'    => 'color',
+      'default' => '#6e0e0a',
+      'group'   => 'links',
+    ),
+    'link-color-hover' => array(
+      'label'   => t('Color (hover)'),
+      'type'    => 'color',
+      'default' => '#580b08',
+      'group'   => 'links',
+    ),
+    'link-color-visited' => array(
+      'label'   => t('Color (visited)'),
+      'type'    => 'color',
+      'default' => '#551a8b',
+      'group'   => 'links',
+    ),
+    'link-text-decoration' => array(
+      'label'   => t('Underline'),
+      'type'    => 'text',
+      'default' => 'underline',
+      'group'   => 'links',
+    ),
+    'link-text-decoration-hover' => array(
+      'label'   => t('Underline (hover)'),
+      'type'    => 'text',
+      'default' => 'underline',
+      'group'   => 'links',
     ),
 
     // Header & Footer
@@ -49,6 +136,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#6e0e0a',
       'group'   => 'header',
+      'utility' => TRUE,
     ),
     'color-primary-text' => array(
       'label'   => t('Text'),
@@ -69,6 +157,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#f0f0c9',
       'group'   => 'hero',
+      'utility' => TRUE,
     ),
     'color-hero-text' => array(
       'label'   => t('Text'),
@@ -89,6 +178,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#f2bb05',
       'group'   => 'block_1',
+      'utility' => TRUE,
     ),
     'color-block-1-text' => array(
       'label'   => t('Text'),
@@ -109,6 +199,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#124e78',
       'group'   => 'block_2',
+      'utility' => TRUE,
     ),
     'color-block-2-text' => array(
       'label'   => t('Text'),
@@ -129,6 +220,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#d74e09',
       'group'   => 'block_3',
+      'utility' => TRUE,
     ),
     'color-block-3-text' => array(
       'label'   => t('Text'),
@@ -149,6 +241,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#4a9153',
       'group'   => 'block_4',
+      'utility' => TRUE,
     ),
     'color-block-4-text' => array(
       'label'   => t('Text'),
@@ -169,6 +262,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#7b2d8b',
       'group'   => 'block_5',
+      'utility' => TRUE,
     ),
     'color-block-5-text' => array(
       'label'   => t('Text'),
@@ -189,6 +283,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#1a6b6b',
       'group'   => 'block_6',
+      'utility' => TRUE,
     ),
     'color-block-6-text' => array(
       'label'   => t('Text'),
@@ -209,6 +304,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#8b6d14',
       'group'   => 'block_7',
+      'utility' => TRUE,
     ),
     'color-block-7-text' => array(
       'label'   => t('Text'),
@@ -229,6 +325,7 @@ $info = array(
       'type'    => 'color',
       'default' => '#5c1a1a',
       'group'   => 'block_8',
+      'utility' => TRUE,
     ),
     'color-block-8-text' => array(
       'label'   => t('Text'),

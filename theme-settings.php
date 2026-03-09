@@ -38,15 +38,109 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
   );
 
   $form['fonts'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Font Settings'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#type' => 'markup',
+    '#markup' => '<p>' . t('Fonts are managed through <a href="!url">Theme Tokens</a>. Google Fonts are loaded automatically based on your selections.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
   );
-  $form['fonts']['use_google_fonts'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Load Google Fonts (Lato & Merriweather)'),
-    '#description' => t('Disable to prevent requests to Google servers, e.g. for GDPR compliance.'),
-    '#default_value' => theme_get_setting('use_google_fonts', 'opera') !== 0,
+
+  // Recommended modules section.
+  // Detect whether the Project Browser is available. If so, we link
+  // uninstalled modules to the installer rather than the external project page.
+  // @todo Verify the query parameter name for the Project Browser modal once
+  //   the Project Browser module version is known. 'filter' is a common pattern
+  //   but may need to be adjusted to match the actual implementation.
+  $has_project_browser = backdrop_valid_path('admin/modules/install');
+
+  $modules = array(
+    array(
+      'name'        => 'Configurable Block Styles',
+      'machine'     => 'configurable_block_style',
+      'project_url' => 'https://backdropcms.org/project/configurable_block_style',
+      'description' => t('Apply predefined CSS style presets to individual blocks from the layout editor. Works well with Opera\'s color system to assign specific color sets to blocks without editing CSS.'),
+    ),
+    array(
+      'name'        => 'Nice Messages',
+      'machine'     => 'nicemessages',
+      'project_url' => 'https://backdropcms.org/project/nicemessages',
+      'description' => t('Improves the appearance of status, warning, and error messages with cleaner styling and icons. Makes system feedback feel like part of your design rather than an afterthought.'),
+    ),
+    array(
+      'name'        => 'Tab Icons',
+      'machine'     => 'tab_icons',
+      'project_url' => 'https://backdropcms.org/project/tab_icons',
+      'description' => t('Adds icons to local task tabs such as View, Edit, and Delete. Makes the admin interface more visually intuitive, especially for people new to Backdrop.'),
+    ),
+    array(
+      'name'        => 'Custom Breadcrumbs',
+      'machine'     => 'custom_breadcrumbs',
+      'project_url' => 'https://backdropcms.org/project/custom_breadcrumbs',
+      'description' => t('Take full control of the breadcrumb trail on any page. Define custom paths and labels to help visitors understand where they are on your site.'),
+    ),
+  );
+
+  $cards = '';
+  foreach ($modules as $module) {
+    $installed = module_exists($module['machine']);
+    $card_class = 'opera-module-card' . ($installed ? ' opera-module-card--installed' : '');
+
+    // Status badge.
+    if ($installed) {
+      $status = '<span class="opera-module-status opera-module-status--installed">' . t('Installed') . '</span>';
+    }
+    else {
+      $status = '<span class="opera-module-status opera-module-status--available">' . t('Not installed') . '</span>';
+    }
+
+    // Module name always links to the project page for reference.
+    $name_link = l(
+      check_plain($module['name']),
+      $module['project_url'],
+      array('attributes' => array('target' => '_blank', 'rel' => 'noopener'))
+    );
+
+    // Install link: use the best available mechanism.
+    // Getting Started module provides a route that pre-populates the Project
+    // Browser search field via a session variable — use it when available.
+    // Otherwise link directly to the install page, or fall back to the
+    // project page if the Project Browser is not installed at all.
+    $install_link = '';
+    if (!$installed) {
+      if (module_exists('getting_started') && $has_project_browser) {
+        $installer_url = url('admin/getting-started/browse/modules/' . $module['name']);
+        $install_link = '<a href="' . $installer_url . '" class="opera-module-install-link">' . t('Install') . '</a>';
+      }
+      elseif ($has_project_browser) {
+        $installer_url = url('admin/modules/install');
+        $install_link = '<a href="' . $installer_url . '" class="opera-module-install-link">' . t('Install') . '</a>';
+      }
+      else {
+        $install_link = '<a href="' . check_url($module['project_url']) . '" class="opera-module-install-link" target="_blank" rel="noopener">' . t('Download') . '</a>';
+      }
+    }
+
+    $cards .= '<div class="' . $card_class . '">'
+      . '<div class="opera-module-card-header">'
+      . '<h4 class="opera-module-name">' . $name_link . '</h4>'
+      . $status
+      . '</div>'
+      . '<p class="opera-module-description">' . $module['description'] . '</p>'
+      . (!empty($install_link) ? '<div class="opera-module-actions">' . $install_link . '</div>' : '')
+      . '</div>';
+  }
+
+  $form['recommended_modules'] = array(
+    '#type'        => 'fieldset',
+    '#title'       => t('Recommended Modules'),
+    '#description' => t('These modules pair well with Opera. Click a module name to visit its project page, or use the Install / Download link to get it.'),
+    '#collapsible' => TRUE,
+    '#collapsed'   => FALSE,
+    '#weight'      => 50,
+  );
+  $form['recommended_modules']['list'] = array(
+    '#markup' => '<div class="opera-module-grid">' . $cards . '</div>',
+    '#attached' => array(
+      'css' => array(
+        backdrop_get_path('theme', 'opera') . '/css/admin/recommended-modules.css',
+      ),
+    ),
   );
 }

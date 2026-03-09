@@ -1,0 +1,91 @@
+/**
+ * @file
+ * Styles for the recommended modules section in Opera theme settings.
+ */
+
+.opera-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.opera-module-card {
+  border: 1px solid #d0d5d8;
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+
+.opera-module-card--installed {
+  border-color: #2e7d32;
+  background: #f8fdf8;
+}
+
+.opera-module-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.opera-module-name {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.opera-module-name a {
+  text-decoration: none;
+  color: #1a5276;
+}
+
+.opera-module-name a:hover {
+  text-decoration: underline;
+}
+
+.opera-module-status {
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+}
+
+.opera-module-status--installed {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.opera-module-status--available {
+  background: #e8e8e8;
+  color: #555;
+}
+
+.opera-module-description {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.opera-module-actions {
+  margin-top: 0.6rem;
+}
+
+.opera-module-install-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+  border-radius: 3px;
+  background: #1a5276;
+  color: #fff;
+  text-decoration: none;
+}
+
+.opera-module-install-link:hover {
+  background: #154360;
+  color: #fff;
+  text-decoration: none;
+}
