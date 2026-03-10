@@ -540,7 +540,7 @@ button.form-submit,
   text-transform: var(--button-text-transform, uppercase);
   color: var(--button-text, #ffffff);
   letter-spacing: 0.025em;
-  line-height: 1.9;
+  line-height: 1.4;
   background: var(--button-bg, #6e0e0a);
   border-radius: var(--button-border-radius, 0);
 }

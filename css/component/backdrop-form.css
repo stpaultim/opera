@@ -151,9 +151,9 @@ button.form-submit,
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.025em;
-  line-height: 2.875;
+  line-height: 1.4;
   border: 0;
-  padding: 0 1.5625em;
+  padding: 0.75em 1.5625em;
   margin-bottom: 1em;
   margin-right: 1em; /* LTR */
   -webkit-transition:
