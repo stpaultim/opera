@@ -771,12 +771,13 @@ ul.action-links a {
 .pager-next,
 .pager-last,
 .pager-item {
-  background: #586172;
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
 }
 
 .pager-ellipsis {
-  color: #586172;
+  color: var(--color-primary-text);
+  opacity: 0.6;
 }
 
 .pager-first a,
@@ -784,7 +785,7 @@ ul.action-links a {
 .pager-next a,
 .pager-last a,
 .pager-item a {
-  color: #ffffff;
+  color: var(--color-primary-text);
 }
 
 .pager-first a:hover,
@@ -792,22 +793,16 @@ ul.action-links a {
 .pager-next a:hover,
 .pager-last a:hover,
 .pager-item a:hover {
-  background: #3c4350;
+  background: var(--color-primary);
+  opacity: 0.8;
 }
 
 .pager-current {
-  background: #20252e;
+  background: var(--color-primary);
+  box-shadow: inset 0 0 0 2px var(--color-primary-link);
+  font-weight: bold;
 }
 
-.pager-first a:before,
-.pager-first a:after,
-.pager-previous a:before,
-.pager-next a:before,
-.pager-last a:before,
-.pager-last a:after {
-  /* Mobile chevron color */
-  border-color: #ffffff;
-}
 
 /**
  * Progress Bar

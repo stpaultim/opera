@@ -1,3 +1,199 @@
+/* Portfolio Projects
+   ========================================================================== */
+
+.view-portfolio-projects .views-view-grid-cols-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.view-portfolio-projects .views-grid-box {
+  text-align: center;
+}
+
+.view-portfolio-projects .views-field-field-project-image img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.view-portfolio-projects .views-field-title h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0;
+}
+
+.view-portfolio-projects .views-field-title h3 a {
+  text-decoration: none;
+}
+
+.view-portfolio-projects .views-field-title h3 a:hover {
+  text-decoration: underline;
+}
+
+/* Page display uses cols-3 with larger images */
+.view-portfolio-projects .views-view-grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.view-portfolio-projects .views-view-grid-cols-3 .views-grid-box {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.view-portfolio-projects .views-view-grid-cols-3 .views-field-field-project-image {
+  order: -1;
+}
+
+.view-portfolio-projects .views-view-grid-cols-3 .views-field-title h3 {
+  font-size: 1.35rem;
+}
+
+@media (max-width: 62em) {
+  .view-portfolio-projects .views-view-grid-cols-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .view-portfolio-projects .views-view-grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 34em) {
+  .view-portfolio-projects .views-view-grid-cols-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .view-portfolio-projects .views-view-grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Services
+   ========================================================================== */
+
+.view-services .views-view-grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.view-services .views-grid-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-services .views-field-field-services-image {
+  order: -1; /* Move icon above title */
+  margin-bottom: 0.75rem;
+}
+
+.view-services .views-field-field-services-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.view-services .views-field-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.view-services .views-field-title a {
+  text-decoration: none;
+}
+
+.view-services .views-field-title a:hover {
+  text-decoration: underline;
+}
+
+.view-services .views-field-body {
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+@media (max-width: 48em) {
+  .view-services .views-view-grid-cols-3 {
+    grid-template-columns: 1fr;
+    max-width: 28rem;
+    margin: 0 auto;
+  }
+}
+
+
+/* Testimonials
+   ========================================================================== */
+
+.view-testimonials .views-view-grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.view-testimonials .views-grid-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+}
+
+.view-testimonials .views-field-field-testimonial-image {
+  order: -1;
+  margin-bottom: 1rem;
+}
+
+.view-testimonials .views-field-field-testimonial-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.view-testimonials .views-field-body {
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.view-testimonials .views-field-body::before {
+  content: '\201C';
+  font-size: 4rem;
+  line-height: 0.8;
+  display: block;
+  margin-bottom: 0.25rem;
+  opacity: 0.7;
+  font-style: normal;
+  color: var(--color-primary, #6e0e0a);
+}
+
+.view-testimonials .views-field-title,
+.view-testimonials .views-field-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+@media (max-width: 62em) {
+  .view-testimonials .views-view-grid-cols-3 {
+    grid-template-columns: 1fr;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+}
+
+
 /* Info Blocks */
 
 .block.info-block .block--inner-wrapper {

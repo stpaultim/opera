@@ -17,8 +17,16 @@
 }
 
 .block-hero-no-image {
-  background: var(--color-hero) url(../images/opera-house.png) no-repeat top center / cover;
-  background-blend-mode: normal;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    var(--color-hero) url(../images/opera-house.png) no-repeat top center / cover;
+  color: var(--color-hero-text);
+}
+
+.block-hero-image {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    center center / cover no-repeat;
   color: var(--color-hero-text);
 }
 

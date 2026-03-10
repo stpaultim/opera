@@ -127,6 +127,102 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
       . '</div>';
   }
 
+  // Recommended recipes section.
+  $recipes = array(
+    array(
+      'name'         => 'FAQ Recipe',
+      'content_type' => 'faq',
+      'project_url'  => 'https://backdropcms.org/project/faq_recipe',
+      'description'  => t('Adds a Frequently Asked Questions content type with a view for displaying Q&A pairs. Great for support pages, help sections, and product documentation.'),
+    ),
+    array(
+      'name'         => 'Services Recipe',
+      'content_type' => 'service',
+      'project_url'  => 'https://backdropcms.org/project/services_recipe',
+      'description'  => t('Creates a Services content type and a front-page block to showcase what your organization offers. Opera provides grid styling for this recipe out of the box.'),
+    ),
+    array(
+      'name'         => 'Portfolio Projects Recipe',
+      'content_type' => 'portfolio_project',
+      'project_url'  => 'https://backdropcms.org/project/portfolio_projects_recipe',
+      'description'  => t('Adds a Portfolio Project content type with image and description fields, plus a front-page block and full listing page. Opera themes both the grid block and the projects page.'),
+    ),
+    array(
+      'name'         => 'Testimonial Recipe',
+      'content_type' => 'testimonial',
+      'project_url'  => 'https://backdropcms.org/project/testimonial_recipe',
+      'description'  => t('Creates a Testimonials content type and a front-page block showing customer or client quotes with portrait photos. Opera styles these as a 3-column card grid with circular avatars.'),
+    ),
+    array(
+      'name'         => 'Slideshow Recipe',
+      'content_type' => 'slide',
+      'project_url'  => 'https://backdropcms.org/project/slide_show_recipe',
+      'description'  => t('Adds a Slide content type and a full-width slideshow block for the front page. Ideal for hero-area promotions and featured content.'),
+    ),
+    array(
+      'name'         => 'Gallery Recipe',
+      'content_type' => 'gallery',
+      'project_url'  => 'https://backdropcms.org/project/gallery_recipe',
+      'description'  => t('Creates a Gallery content type with image fields and a browseable gallery view. Perfect for portfolios, event photos, and visual showcases.'),
+    ),
+  );
+
+  $recipe_cards = '';
+  foreach ($recipes as $recipe) {
+    $node_types = node_type_get_types();
+    $installed = isset($node_types[$recipe['content_type']]);
+    $card_class = 'opera-module-card' . ($installed ? ' opera-module-card--installed' : '');
+
+    if ($installed) {
+      $status = '<span class="opera-module-status opera-module-status--installed">' . t('Installed') . '</span>';
+    }
+    else {
+      $status = '<span class="opera-module-status opera-module-status--available">' . t('Not installed') . '</span>';
+    }
+
+    $name_link = l(
+      check_plain($recipe['name']),
+      $recipe['project_url'],
+      array('attributes' => array('target' => '_blank', 'rel' => 'noopener'))
+    );
+
+    $install_link = '';
+    if (!$installed) {
+      if ($has_project_browser) {
+        $install_link = '<a href="' . url('admin/modules/install') . '" class="opera-module-install-link">' . t('Install') . '</a>';
+      }
+      else {
+        $install_link = '<a href="' . check_url($recipe['project_url']) . '" class="opera-module-install-link" target="_blank" rel="noopener">' . t('Download') . '</a>';
+      }
+    }
+
+    $recipe_cards .= '<div class="' . $card_class . '">'
+      . '<div class="opera-module-card-header">'
+      . '<h4 class="opera-module-name">' . $name_link . '</h4>'
+      . $status
+      . '</div>'
+      . '<p class="opera-module-description">' . $recipe['description'] . '</p>'
+      . (!empty($install_link) ? '<div class="opera-module-actions">' . $install_link . '</div>' : '')
+      . '</div>';
+  }
+
+  $form['recommended_recipes'] = array(
+    '#type'        => 'fieldset',
+    '#title'       => t('Recommended Recipes'),
+    '#description' => t('These recipes are supported by Opera with built-in CSS styling. Click a recipe name to visit its project page.'),
+    '#collapsible' => TRUE,
+    '#collapsed'   => FALSE,
+    '#weight'      => 51,
+  );
+  $form['recommended_recipes']['list'] = array(
+    '#markup' => '<div class="opera-module-grid">' . $recipe_cards . '</div>',
+    '#attached' => array(
+      'css' => array(
+        backdrop_get_path('theme', 'opera') . '/css/admin/recommended-modules.css',
+      ),
+    ),
+  );
+
   $form['recommended_modules'] = array(
     '#type'        => 'fieldset',
     '#title'       => t('Recommended Modules'),
