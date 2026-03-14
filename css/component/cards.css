@@ -13,18 +13,20 @@
   background-color: #f2f2f2;
 }
 
-.block-views-promoted-cards-block .views-view-grid-cols-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/*
+ * The promoted cards view uses Backdrop's responsive grid plugin, which
+ * outputs .views-view-responsive-grid--horizontal. Backdrop's views.css
+ * is not auto-loaded, so we provide the layout rules here using flexbox.
+ * The three-class selector overrides any conflicting display:block rules.
+ */
+.views-view-grid.views-view-responsive-grid.views-view-responsive-grid--horizontal {
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
-/* Stack to single column only on small phones. */
-@media (max-width: 30em) {
-  .block-views-promoted-cards-block .views-view-grid-cols-3 {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+.views-view-grid.views-view-responsive-grid.views-view-responsive-grid--horizontal .views-grid-box {
+  flex: 1 1 16rem;
 }
 
 .view-promoted-cards .views-grid-box {

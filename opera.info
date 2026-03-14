@@ -4,10 +4,7 @@ description = Opera theme
 backdrop = 1.x
 version = 1.x
 
-; Add theme Bootstrap CSS files
-stylesheets[all][] = css/bootstrap/bootstrap.min.css
-
-; Add theme CSS files - from Tatsu
+; Add theme CSS files
 stylesheets[all][] = css/base.css
 stylesheets[all][] = css/typography.css
 stylesheets[all][] = css/layout.css

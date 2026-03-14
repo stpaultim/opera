@@ -227,67 +227,16 @@ fieldset {
   clear: both;
 }
 
-/* Everything after here added by Tatsu - TODO: needs integration */
-
-/* Adding this back, because Basis excludes system.theme.css */
+/* Ensure system.theme.css label display is applied */
 label {
   display: block;
-}
-
-.row {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.page-title {
-  margin-bottom: 30px;
-}
-
-.col-md-12 {
-  padding-right: 0;
-  padding-left: 0;
-}
-
-.l-page-title,
-.block:first-of-type {
-  padding-top: 20px;
-}
-
-footer .block:first-of-type,
-header .block:first-of-type {
-  padding-top: 0px;
-}
-
-/*
- * Breadcrumbs
- */
-
-.breadcrumb {
-  background-color: white;
-  padding: 0rem 1rem;
-  margin-top: 0;
-}
-.breadcrumb li:after {
-  border-color: grey;
-  width: .7em;
-  height: .7em;
-  border-width: 1px 1px 0 0;
-  right: 10px;
-}
-
-.breadcrumb li a, .breadcrumb li span {
-  padding: 0.5em 1.7em .5em 0em;
 }
 
 h2.block-title {
   margin-bottom: 2.5rem;
 }
 
-.form-text {
-  display: initial;
-}
-
-.submitted-by{
+.submitted-by {
   padding-bottom: 15px;
   display: block;
   font-weight: bold;
