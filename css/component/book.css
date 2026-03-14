@@ -1,0 +1,250 @@
+/**
+ * @file
+ * Book module navigation and admin link styles.
+ */
+
+/* =====================================================================
+   Book pager — prev / up / next navigation
+   Reader-facing content navigation; uses theme tokens.
+   ===================================================================== */
+
+.book-navigation {
+  margin: 2rem 0 1rem;
+  padding: 1rem;
+  border-top: 2px solid var(--color-primary, #6e0e0a);
+  background: transparent;
+}
+
+.book-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.book-pager li {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Each slot owns one third of the row; text-align controls button position
+ * within that slot. Works correctly when only one or two items are present. */
+.book-pager .previous {
+  text-align: left;
+}
+
+.book-pager .up {
+  text-align: center;
+}
+
+.book-pager .next {
+  text-align: right;
+}
+
+/* Prev/next as solid directional buttons */
+.book-pager .previous a,
+.book-pager .previous a:link,
+.book-pager .previous a:visited,
+.book-pager .next a,
+.book-pager .next a:link,
+.book-pager .next a:visited {
+  display: inline-block;
+  padding: 0.4em 1em;
+  border: 1px solid var(--button-bg, #6e0e0a);
+  border-radius: var(--button-border-radius, 0);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--button-bg, #6e0e0a);
+  color: var(--button-text, #fff) !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.book-pager .previous a:hover,
+.book-pager .previous a:focus,
+.book-pager .next a:hover,
+.book-pager .next a:focus {
+  background-color: var(--button-bg-hover, #580b08);
+  border-color: var(--button-bg-hover, #580b08);
+  text-decoration: none;
+}
+
+/* "up" as a quiet text link */
+.book-pager .up a,
+.book-pager .up a:link,
+.book-pager .up a:visited {
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  text-decoration: none;
+}
+
+.book-pager .up a:hover,
+.book-pager .up a:focus {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* =====================================================================
+   Book navigation block — sidebar table of contents
+   Targets the core book navigation block (.block-book-navigation).
+   ===================================================================== */
+
+/* Book title heading link */
+.block-book-navigation .block-title {
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary, #6e0e0a);
+}
+
+.block-book-navigation .block-title a.book-title {
+  color: var(--color-primary, #6e0e0a);
+  font-family: var(--font-heading, Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.block-book-navigation .block-title a.book-title:hover,
+.block-book-navigation .block-title a.book-title:focus {
+  text-decoration: underline;
+}
+
+/* Reset the menu list */
+.block-book-navigation .block-content {
+  padding-top: 0.25rem;
+}
+
+.block-book-navigation .menu,
+.block-book-navigation .menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Top-level items */
+.block-book-navigation .menu > li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.block-book-navigation .menu > li:last-child {
+  border-bottom: none;
+}
+
+/* All links */
+.block-book-navigation .menu a {
+  display: block;
+  padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  border-left: 3px solid transparent;
+  color: var(--link-color, #6e0e0a);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.block-book-navigation .menu a:hover,
+.block-book-navigation .menu a:focus {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-left-color: var(--color-primary, #6e0e0a);
+  text-decoration: none;
+}
+
+/* Active trail — ancestor items */
+.block-book-navigation .menu .active-trail > a {
+  font-weight: 600;
+}
+
+/* Active — current page */
+.block-book-navigation .menu a.active {
+  border-left-color: var(--color-primary, #6e0e0a);
+  background-color: rgba(110, 14, 10, 0.06);
+  font-weight: 700;
+  color: var(--color-primary, #6e0e0a);
+}
+
+/* Sub-menu items */
+.block-book-navigation .menu ul a {
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.block-book-navigation .menu ul a:hover,
+.block-book-navigation .menu ul a:focus {
+  color: var(--color-primary, #6e0e0a);
+}
+
+.block-book-navigation .menu ul a.active {
+  color: var(--color-primary, #6e0e0a);
+}
+
+/* Third level and deeper */
+.block-book-navigation .menu ul ul a {
+  padding-left: 2.25rem;
+}
+
+/* =====================================================================
+   Book admin links — Add child page / Reorder book
+   Admin-only; styled as compact rectangular ghost buttons matching the
+   admin tabs and comment admin link treatment.
+   ===================================================================== */
+
+.node-book > .links.inline,
+.node-book > .content > .links.inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.node-book > .links.inline li,
+.node-book > .content > .links.inline li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.node-book > .links.inline li:after,
+.node-book > .content > .links.inline li:after {
+  content: '';
+}
+
+.node-book > .links.inline a,
+.node-book > .links.inline a:link,
+.node-book > .links.inline a:visited,
+.node-book > .content > .links.inline a,
+.node-book > .content > .links.inline a:link,
+.node-book > .content > .links.inline a:visited {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border: 1px solid #bbb;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.node-book > .links.inline a:hover,
+.node-book > .links.inline a:focus,
+.node-book > .content > .links.inline a:hover,
+.node-book > .content > .links.inline a:focus {
+  background: #f0f0f0;
+  border-color: #999;
+  color: #333;
+  text-decoration: none;
+}

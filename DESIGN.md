@@ -1,0 +1,137 @@
+# Opera — Design Principles
+
+This document records the design decisions and conventions established for the Opera theme.
+Its purpose is to keep future development consistent and to explain *why* things are done
+the way they are, not just *what* they do.
+
+---
+
+## Visual hierarchy by audience
+
+The most important principle in Opera's UI is distinguishing controls by who sees them.
+
+### Admin-only controls
+Elements only visible to logged-in editors (admin tabs, comment delete/edit/reply, book
+"Add child page"/"Reorder book") use **hardcoded neutral grays — never theme colors**.
+
+- Active state: `background: #444; color: #fff`
+- Hover state: `background: #f0f0f0; border-color: #999; color: #333`
+- Default state: `border: 1px solid #bbb; color: #555; background: transparent`
+
+**Why:** Admin controls should feel like system UI, not site content. A site architect
+who changes `--color-primary` to blue should not accidentally make "DELETE" look like a
+tag. Neutral gray is visually subordinate and universally understood as interface chrome.
+
+### Public-facing navigation
+Controls visible to all visitors (book prev/next, pagers, Read More) use **Design Token
+variables** so they automatically respect the site's configured color scheme.
+
+- Use `var(--button-bg)`, `var(--button-text)`, `var(--button-bg-hover)`
+- Use `var(--button-border-radius)` for consistent shape
+
+**Why:** These are part of the front-end experience. A visitor interacting with book
+navigation should see the same visual language as other buttons on the site.
+
+---
+
+## Shape as semantic signal
+
+Shapes carry meaning consistently across Opera. Do not mix them.
+
+| Shape | Border radius | Used for |
+|---|---|---|
+| **Pill** | `2em` | Content labels only (taxonomy tags) |
+| **Rectangular** | `0.25rem` | All actionable controls (buttons, admin tabs, nav) |
+
+**Why:** Pills say "this is a label describing content." Rectangles say "this is something
+you can do." A site visitor who sees a pill-shaped "Edit" button will be confused about
+whether it's a tag or an action. Keep the shapes exclusive to their roles.
+
+---
+
+## Token usage
+
+### Use tokens for public-facing UI
+Anything a regular visitor interacts with should pull from Design Tokens:
+- `--button-bg`, `--button-text`, `--button-bg-hover`, `--button-border-radius`
+- `--color-primary`, `--color-primary-text`
+
+### Never use tokens for admin-only UI
+Admin controls use hardcoded values. This is intentional — they must not shift when
+a site architect changes the color scheme.
+
+### `!important` on color overrides
+`front.css` block link selectors can have very high specificity (up to 7 chained
+classes). When tag pills or button colors are not applying inside front-page colored
+blocks, `!important` on the `color` property is the correct fix — not adding more
+selector weight.
+
+---
+
+## Container nesting rule
+
+Backdrop's Bootstrap grid gives `.container` and `.container-fluid` `padding: 0 15px`.
+When a `.container` is nested inside another `.container`, the padding stacks and content
+appears indented relative to other page elements.
+
+**Rule:** Any `.container` nested inside an already-padded container must have its own
+`padding-left` and `padding-right` zeroed.
+
+Established patterns:
+```css
+/* Views blocks nested inside a container region */
+.view.container { padding-left: 0; padding-right: 0; }
+
+/* Footer: all nested containers (blocks, flexible layout rows) */
+.l-footer-inner .container,
+.l-footer-inner .container-fluid { padding-left: 0; padding-right: 0; }
+
+/* Front-page block inner wrappers in header */
+.l-header .block--inner-wrapper.container { padding-left: 0; padding-right: 0; }
+```
+
+When adding new regions or block types, check whether content aligns with the page
+title before shipping. The browser devtools left-edge coordinate is the quickest check:
+page title, main content, and footer content should all share the same `left` value.
+
+---
+
+## CSS conventions for site architects
+
+### Tag-style pill lists in Views blocks
+
+Taxonomy term reference fields on nodes automatically receive pill badge styling.
+
+For a custom Views block that lists tags or terms, add the CSS class `tag-list` in the
+view configuration (*Advanced → CSS class*). Opera will apply the same pill treatment.
+
+The built-in Tags view (`view-tags`) is also supported automatically.
+
+---
+
+## Comment structure note
+
+Backdrop's comment template (`comment.tpl.php`) outputs:
+```
+article.comment
+  h3.comment-title > a.permalink
+  footer > p.submitted + a.permalink
+  div.content
+  ul.links.inline  ← delete / edit / reply (admin only)
+```
+
+The `ul.links.inline` links are admin-only and styled as rectangular ghost buttons
+(neutral gray, no theme colors). See `css/component/comment.css`.
+
+---
+
+## Book module
+
+Book navigation (`nav.book-navigation`) contains two distinct things:
+
+1. **`.book-pager`** — prev/up/next for readers. Uses button tokens. Each `li` has
+   `flex: 1` so a single item (e.g. only "next" on the first page) positions correctly
+   via `text-align` rather than defaulting to the flex start.
+
+2. **`.links.inline`** on `.node-book` — "Add child page" and "Reorder book". Admin-only.
+   Styled as rectangular ghost buttons (neutral gray).
