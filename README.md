@@ -123,6 +123,26 @@ and light links; light backgrounds get dark text and standard body link colors.
 Blocks using the Hero block type display with a minimum height of 450px. The hero region
 uses its own color set separate from the cycling block colors.
 
+## CSS conventions for site architects
+
+### Tag-style pill lists in Views blocks
+
+Opera automatically styles tag pill badges for two cases:
+
+1. **Taxonomy term reference fields** — any `field-type-taxonomy-term-reference` field
+   displayed on a node renders its term links as pill badges.
+2. **The built-in Tags view** — the `view-tags` block (Backdrop's default Tags view)
+   is reflowed into a matching flex pill group.
+
+If you create a custom Views block that lists taxonomy terms or other tag-like links and
+want the same pill treatment, add the CSS class `tag-list` to the view display:
+
+- Open the view in the Views UI
+- Under **Advanced → CSS class**, enter `tag-list`
+- Save the view
+
+Opera will then apply the pill badge styles to that view's output automatically.
+
 ## Sub-theming
 
 Opera is suitable as a base for a sub-theme. A sub-theme can:

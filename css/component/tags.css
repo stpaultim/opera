@@ -38,3 +38,54 @@
   opacity: 0.8;
   text-decoration: none;
 }
+
+/* =====================================================================
+   Views-based tag lists — pill badge treatment for Views blocks that
+   output a list of taxonomy term links.
+
+   Two selectors are supported:
+   - .view-tags   — Backdrop's built-in Tags view (always present)
+   - .view.tag-list — opt-in class for any custom view. Add it in the
+                      view's configuration: Advanced → CSS class → "tag-list"
+
+   Both reflow the default views-row stacked list into a flex pill group
+   matching the taxonomy term reference field pill style above.
+   ===================================================================== */
+
+.view-tags .view-content,
+.view.tag-list .view-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+}
+
+.view-tags .views-row,
+.view.tag-list .views-row {
+  margin: 0;
+  padding: 0;
+}
+
+.view-tags .field-content a,
+.view-tags .field-content a:link,
+.view-tags .field-content a:visited,
+.view.tag-list .field-content a,
+.view.tag-list .field-content a:link,
+.view.tag-list .field-content a:visited {
+  display: inline-block;
+  padding: 0.2em 0.75em;
+  border-radius: 2em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text) !important;
+  transition: opacity 0.15s ease;
+}
+
+.view-tags .field-content a:hover,
+.view.tag-list .field-content a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
