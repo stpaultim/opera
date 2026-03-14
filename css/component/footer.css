@@ -49,10 +49,15 @@
 }
 
 /**
- * Prevent double padding when block--inner-wrapper.container is nested
- * inside .l-footer-inner.container on the front page.
+ * Prevent double padding for any .container nested inside
+ * .l-footer-inner.container. This covers:
+ *   - block--inner-wrapper.container (front page blocks)
+ *   - flexible layout row containers (mini-layouts used as footer blocks)
+ * The outer .l-footer-inner.container already provides the page margins,
+ * so inner containers must not add their own horizontal padding.
  */
-.l-footer .block--inner-wrapper.container {
+.l-footer-inner .container,
+.l-footer-inner .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
