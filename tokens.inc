@@ -53,7 +53,7 @@ $info = array(
     'font-heading' => array(
       'label'   => t('Heading font'),
       'type'    => 'font',
-      'default' => "'Merriweather', Georgia, serif",
+      'default' => "'Playfair Display', Georgia, serif",
       'group'   => 'typography',
       'utility' => TRUE,
     ),

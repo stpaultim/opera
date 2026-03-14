@@ -83,6 +83,15 @@
 }
 
 /**
+ * Prevent double padding when block--inner-wrapper.container is nested
+ * inside .l-header-inner.container on the front page.
+ */
+.l-header .block--inner-wrapper.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/**
  * Menus in header area
  */
 .header-menu {

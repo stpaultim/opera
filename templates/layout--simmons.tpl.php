@@ -76,17 +76,30 @@
 
       <?php print $action_links; ?>
 
+      <?php $has_sidebar = !empty($content['sidebar']); $has_sidebar2 = !empty($content['sidebar2']); ?>
+      <?php if ($has_sidebar || $has_sidebar2): ?>
       <div class="l-middle row">
         <main class="l-content col-md-6 col-md-push-3" role="main" aria-label="<?php print t('Main content'); ?>">
           <?php print $content['content']; ?>
         </main>
+        <?php if ($has_sidebar): ?>
         <div class="l-sidebar l-sidebar-first col-md-3 col-md-pull-6">
           <?php print $content['sidebar']; ?>
         </div>
+        <?php endif; ?>
+        <?php if ($has_sidebar2): ?>
         <div class="l-sidebar l-sidebar-second col-md-3">
           <?php print $content['sidebar2']; ?>
         </div>
+        <?php endif; ?>
       </div><!-- /.l-middle -->
+      <?php else: ?>
+      <div class="l-middle">
+        <main class="l-content" role="main" aria-label="<?php print t('Main content'); ?>">
+          <?php print $content['content']; ?>
+        </main>
+      </div><!-- /.l-middle -->
+      <?php endif; ?>
 
       <?php if ($content['third1'] || $content['third2'] || $content['third3']): ?>
         <div class="l-thirds row">

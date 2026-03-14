@@ -5,6 +5,7 @@
 .l-footer {
   margin: 1.5rem 0 0;
   padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   line-height: 1.5;
 }
 
@@ -45,6 +46,15 @@
 .l-footer .menu a {
   display: block;
   padding: 0 1rem;
+}
+
+/**
+ * Prevent double padding when block--inner-wrapper.container is nested
+ * inside .l-footer-inner.container on the front page.
+ */
+.l-footer .block--inner-wrapper.container {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /**

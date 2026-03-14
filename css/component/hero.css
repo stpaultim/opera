@@ -121,7 +121,9 @@
 
 .block-hero-image .container {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .block-hero-image .block-title {
   font-weight: 600;

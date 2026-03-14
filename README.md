@@ -81,6 +81,31 @@ modules that pair well with Opera, with direct links to install them. These incl
 - **Tab Icons** — icons on admin task tabs
 - **Custom Breadcrumbs** — control over the breadcrumb trail
 
+## Template customizations
+
+Opera overrides several of Backdrop core's layout templates to improve behavior for
+typical use cases. The most significant change from core is **collapsible sidebar regions**.
+
+In core layout templates, sidebar regions are always rendered even when empty, which
+reserves column space and narrows the main content area unnecessarily. Opera's templates
+for all sidebar layouts (Moscone, Moscone Flipped, Taylor, Taylor Flipped, Harris, and
+Simmons) check whether each sidebar region contains content before rendering it. When a
+sidebar is empty, the main content area expands to fill the full available width. In
+two-sidebar layouts, each sidebar collapses independently, so a layout with only one
+populated sidebar renders as a two-column layout rather than three.
+
+This behavior is implemented entirely in the layout templates and requires no CSS changes
+or configuration.
+
+The **Boxton layout** has a second Opera-specific template variant, `layout--boxton--front.tpl.php`,
+used on the front page. In this variant, `.l-wrapper-inner` does not carry Bootstrap's
+`container container-fluid` classes, so blocks in the content region are free to stretch
+to the full viewport width. Each block is responsible for constraining its own inner
+content via the `block--inner-wrapper container` div in `block.tpl.php`. The top region
+is also moved outside `.l-wrapper-inner` so it too can extend edge to edge. On interior
+pages the standard Boxton template is used, where `.l-wrapper-inner` applies the
+container constraint as usual.
+
 ## Layout details
 
 ### Front page (Boxton layout)

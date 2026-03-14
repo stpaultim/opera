@@ -68,6 +68,7 @@
 
       <?php print $action_links; ?>
 
+      <?php if (!empty($content['sidebar'])): ?>
       <div class="l-middle row">
         <main class="l-content col-md-9" role="main" aria-label="<?php print t('Main content'); ?>">
           <?php print $content['content']; ?>
@@ -76,6 +77,13 @@
           <?php print $content['sidebar']; ?>
         </div>
       </div><!-- /.l-middle -->
+      <?php else: ?>
+      <div class="l-middle">
+        <main class="l-content" role="main" aria-label="<?php print t('Main content'); ?>">
+          <?php print $content['content']; ?>
+        </main>
+      </div><!-- /.l-middle -->
+      <?php endif; ?>
 
       <?php if (!empty($content['bottom'])): ?>
         <div class="l-bottom">

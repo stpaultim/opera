@@ -45,14 +45,17 @@
   padding: 0;
 }
 
-.view.container,
-.view .views-view-grid {
-  margin-left: -0.9375rem;
-  margin-right: -0.9375rem;
-}
 
 .view-header {
   margin-bottom: 2rem;
+}
+
+/* Strip Bootstrap container padding from views — the outer layout container
+ * already provides page margins, so a nested .view.container would otherwise
+ * indent view content an extra 15px relative to surrounding elements. */
+.view.container {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /**

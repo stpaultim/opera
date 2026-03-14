@@ -1,27 +1,11 @@
 /**
  * @file
- * Drupal Admin Tabs styles.
+ * Admin tabs — pill-style compact tabs for front-end editing.
  */
 
-/**
- * Primary admin tabs
- */
 nav.tabs {
-  position: relative;
-  padding: 0.75em 0.5em 0;
-  margin-top: 20px;
-}
-
-nav.tabs:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  z-index: 0;
-  display: block;
-  width: 100%;
-  height: 3.1875em;
-  transform: translate(-50%, 0);
+  margin: 0.75rem 0 1.25rem;
+  padding: 0;
 }
 
 .tabs:after {
@@ -30,33 +14,30 @@ nav.tabs:before {
   clear: both;
 }
 
+/**
+ * Primary tabs
+ */
 ul.primary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
   position: relative;
-  clear: both;
   box-sizing: border-box;
-  border: none;
   width: 100%;
-  float: left; /* LTR */
-  margin: 0 0 1em;
-  padding: 0 0 0 0.5em;
-  font-size: 0.9375em;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 0.75rem;
   text-transform: uppercase;
-}
-
-[dir="rtl"] ul.primary {
-  float: right;
+  letter-spacing: 0.06em;
+  list-style: none;
 }
 
 ul.primary li {
   position: relative;
   z-index: 1;
-  float: left; /* LTR */
   margin: 0;
   list-style: none;
-}
-
-[dir="rtl"] ul.primary li {
-  float: right;
 }
 
 ul.primary li a,
@@ -69,105 +50,99 @@ ul.primary li.active a,
   position: relative;
   z-index: 1;
   display: block;
-  padding: 12px 20px;
+  padding: 0.3em 0.85em;
+  border: 1px solid #bbb;
+  border-radius: 2em;
+  background: transparent;
+  color: #555;
   text-decoration: none;
-  border: 0;
-  border-right: 0.125rem solid #586172; /* LTR */
-  overflow: visible;
-  line-height: 1;
+  line-height: 1.5;
   font-weight: normal;
+  overflow: visible;
   transition:
-    background-color 0.5s ease 0s,
-    color 0.5s ease 0s;
-  will-change: background-color, color;
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
+ul.primary li a:hover,
+ul.primary li a:focus {
+  background: var(--color-primary, #6e0e0a);
+  border-color: var(--color-primary, #6e0e0a);
+  color: #fff;
+}
+
+ul.primary li.active a,
+ul.primary li a.active {
+  background: var(--color-primary, #6e0e0a);
+  border-color: var(--color-primary, #6e0e0a);
+  color: #fff;
+}
+
+ul.primary li:first-child a,
+ul.primary li:last-child a,
+.expand-dropdown-tabs-control {
+  border-radius: 2em;
+}
+
+/**
+ * RTL
+ */
 [dir="rtl"] ul.primary li a,
 [dir="rtl"] ul.primary li a.active,
 [dir="rtl"] ul.primary li a:active,
 [dir="rtl"] ul.primary li a:visited,
 [dir="rtl"] ul.primary li a:hover,
 [dir="rtl"] ul.primary li.active a,
-[dir="rtl"] .expand-dropdown-tabs-control,
-[dir="rtl"] .responsive-tabs-mobile .expand-dropdown-tabs-control:before,
-[dir="rtl"] .responsive-tabs-mobile .expand-dropdown-tabs-label {
-  border-right: 0;
-  border-left-width: 0.125rem;
-  border-left-style: solid;
-}
-
-ul.primary li:first-child a {
-  -webkit-border-radius: 4px 0 0 0;
-  -moz-border-radius: 4px 0 0 0;
-  border-radius: 4px 0 0 0;
-}
-
-.expand-dropdown-tabs-control,
-ul.primary li:last-child a {
-  -webkit-border-radius: 0 4px 0 0;
-  -moz-border-radius: 0 4px 0 0;
-  border-radius: 0 4px 0 0;
-  border-right: 0;
-}
-
-[dir="rtl"] ul.primary li:first-child a {
-  -webkit-border-radius: 0 4px 0 0;
-  -moz-border-radius: 0 4px 0 0;
-  border-radius: 0 4px 0 0;
-}
-
-[dir="rtl"] .expand-dropdown-tabs-control,
-[dir="rtl"] ul.primary li:last-child a {
-  -webkit-border-radius: 4px 0 0 0;
-  -moz-border-radius: 4px 0 0 0;
-  border-radius: 4px 0 0 0;
-  border-right: 0;
-}
-
-@media (max-width: 34em) {
-  ul.primary li {
-    float: none;
-    margin-bottom: 2px;
-  }
-  .js ul.primary li {
-    float: left;
-  }
+[dir="rtl"] .expand-dropdown-tabs-control {
+  border: 1px solid #bbb;
 }
 
 /**
- * Secondary admin tabs
+ * Secondary tabs
  */
 ul.secondary {
-  padding: 16px 23px 6px;
-  margin: 0 -20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  padding: 0.5rem 0;
+  margin: 0 0 0.5rem;
   line-height: 1.385;
   overflow: hidden;
   clear: both;
   border: 0;
+  list-style: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 ul.secondary li {
   display: inline-block;
-  margin: 0 5px 10px;
+  margin: 0;
 }
 
 ul.secondary li a {
   display: block;
-  border: 2px solid #e3e2e2;
+  padding: 0.3em 0.85em;
+  border: 1px solid #bbb;
+  border-radius: 2em;
+  background: transparent;
+  color: #555;
   text-decoration: none;
   transition:
-    background-color 0.6s ease,
-    color 0.6s ease;
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-ul.secondary li a,
 ul.secondary li a:hover,
+ul.secondary li a:focus,
 ul.secondary li.active a,
 ul.secondary li.active a.active {
-  padding: .36em 1em;
-  -webkit-border-radius: 1.45em;
-  -moz-border-radius: 1.45em;
-  border-radius: 1.45em;
+  background: var(--color-primary, #6e0e0a);
+  border-color: var(--color-primary, #6e0e0a);
+  color: #fff;
 }
 
 /**
@@ -184,7 +159,6 @@ ul.secondary li.active a.active {
 
 .responsive-tabs-processed .duplicated-tab,
 .responsive-tabs-mobile ul.primary {
-  /* Hidden elements, hiding from sighted users only */
   visibility: hidden;
   height: 0;
   overflow: hidden;
@@ -192,7 +166,6 @@ ul.secondary li.active a.active {
 }
 
 .expand-dropdown-tabs.responsive-tabs-mobile ul.primary {
-  /* Reverse hidden elements styles */
   visibility: visible;
   height: auto;
   overflow: visible;
@@ -207,13 +180,14 @@ ul.secondary li.active a.active {
 .expand-dropdown-tabs ul.responsive-tabs-dropdown li a,
 .expand-dropdown-tabs ul.responsive-tabs-dropdown li a:hover {
   border: 0;
-  border-top: 2px solid #ffffff;
+  border-top: 1px solid #eee;
+  border-radius: 0;
   position: relative;
 }
 
 .expand-dropdown-tabs ul.responsive-tabs-dropdown li:first-child a:before {
-  margin-top: -2px;
-  height: calc(100% + 2px);
+  margin-top: -1px;
+  height: calc(100% + 1px);
 }
 
 .responsive-tabs-before.expand-dropdown-tabs ul.responsive-tabs-dropdown li a {
@@ -247,7 +221,7 @@ ul.primary.responsive-tabs-dropdown {
   display: none;
   height: auto;
   padding: 0;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 0.5rem 0.5rem;
   overflow: hidden;
 }
 
@@ -268,7 +242,7 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
 
 .expand-dropdown-tabs-control {
   position: absolute;
-  top: 0.8em;
+  top: 0;
   left: 0;
   box-sizing: border-box;
   width: 50px;
@@ -288,10 +262,8 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
 }
 
 .responsive-tabs-after .expand-dropdown-tabs-control {
-  -webkit-border-radius: 4px 0 0 0;
-  -moz-border-radius: 4px 0 0 0;
-  border-radius: 4px 0 0 0;
-  border-left: 2px solid #bcc2cc;
+  border-radius: 2em 0 0 2em;
+  border-left: 1px solid #bbb;
 }
 
 .desktop-primary-tabs .expand-dropdown-tabs-control {
@@ -326,7 +298,7 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
 
 .responsive-tabs-mobile.expand-dropdown-tabs .expand-dropdown-tabs-label,
 .responsive-tabs-mobile.expand-dropdown-tabs:hover .expand-dropdown-tabs-label {
-  background: #ffffff;
+  background: #fff;
 }
 
 .responsive-tabs-mobile .expand-dropdown-tabs-control {
@@ -335,10 +307,8 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
   height: 100%;
   padding: 0;
   border: 0;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 2em;
   overflow: hidden;
-  border-radius: 4px 4px 0 0;
 }
 
 .responsive-tabs-mobile .expand-dropdown-tabs-control.js-active {
@@ -353,7 +323,7 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
   width: 3em;
   height: 100%;
   box-sizing: border-box;
-  border-left: 2px solid transparent;
+  border-left: 1px solid transparent;
 }
 
 .responsive-tabs-mobile .expand-dropdown-tabs-control:after {
@@ -385,15 +355,14 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
 .responsive-tabs-mobile ul.primary,
 .expand-dropdown-tabs.responsive-tabs-mobile ul.primary {
   overflow: hidden;
-  -webkit-border-radius: 0 0 4px 4px;
-  border-radius: 4px;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .responsive-tabs-mobile ul.primary li {
   position: relative;
   float: none;
   border-right: 0;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 1px solid #eee;
 }
 
 .responsive-tabs-mobile ul.primary a:after {
@@ -411,6 +380,15 @@ ul.primary.responsive-tabs-dropdown li:last-child a {
 }
 
 .responsive-tabs-mobile ul.primary li a {
-  -webkit-border-radius: 0;
   border-radius: 0;
+}
+
+@media (max-width: 34em) {
+  ul.primary li {
+    float: none;
+    margin-bottom: 2px;
+  }
+  .js ul.primary li {
+    float: left;
+  }
 }

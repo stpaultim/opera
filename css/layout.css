@@ -20,21 +20,22 @@
   min-height: 0;
 }
 
-/* Override Basis core sticky-footer layout — let pages size naturally. */
+/* Sticky footer — footer always sits at bottom on short pages. */
 .layout {
   position: relative;
   box-sizing: border-box;
-  display: block;
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .l-wrapper {
-  flex: none;
+  flex: 1;
 }
 .admin-bar body .layout {
   padding-top: 33px;
   margin-top: -33px;
 }
-.l-content{
-  padding: 0px;
+.l-content {
+  padding: 0 0 2rem;
 }
 
