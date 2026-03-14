@@ -10,7 +10,8 @@
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
 
-  --color-card-bg:      #f5f5f5;
+  --color-card-bg:      color-mix(in srgb, var(--color-primary) 5%, white);
+  --color-surface-mid:  color-mix(in srgb, var(--color-primary) 12%, white);
   --card-border-radius: 0.25rem;
 
   --color-primary:      #6e0e0a;

@@ -25,6 +25,8 @@ fieldset .fieldset-legend {
   width: 100%;
   padding: 0.5em 0.78947em; /* LTR */
   text-transform: uppercase;
+  background-color: var(--color-card-bg, #f5f5f5);
+  border-bottom: 1px solid rgba(110, 14, 10, 0.12);
 }
 [dir="rtl"] fieldset .fieldset-legend {
   right: 0;
@@ -40,6 +42,12 @@ fieldset .fieldset-legend {
 .collapsible > .fieldset-wrapper > .fieldset-description {
   margin: 0 0 0.75em;
   padding: 0.75em 1.5625em;
+}
+
+/* Override base.css border — primary-tinted sides, stronger top accent */
+fieldset {
+  border: 1px solid rgba(110, 14, 10, 0.15);
+  border-top: 3px solid var(--color-primary, #6e0e0a);
 }
 
 /**
@@ -80,7 +88,7 @@ fieldset .fieldset-wrapper {
   width: 0;
   height: 0;
   border: .32em solid transparent;
-  border-top-color: #000000;
+  border-top-color: var(--color-primary, #6e0e0a);
   border-bottom: 0;
   -webkit-transform: translate(0, 0.125em);
   transform: translate(0, 0.125em);

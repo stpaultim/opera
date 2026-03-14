@@ -94,8 +94,8 @@ pre {
 code {
   display: inline-block;
   padding: 0 0.375em;
-  border: 0.0625rem solid #bbbbbb;
-  background: #dee2ea;
+  border: 0.0625rem solid var(--color-surface-mid, #e0d0d0);
+  background: var(--color-card-bg, #f5f5f5);
 }
 
 pre code {
