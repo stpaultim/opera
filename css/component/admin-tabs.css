@@ -67,7 +67,7 @@ ul.primary li.active a,
 
 ul.primary li a:hover,
 ul.primary li a:focus {
-  background: #f0f0f0;
+  background: var(--color-card-bg, #f5f5f5);
   border-color: #999;
   color: #333;
 }
@@ -138,7 +138,7 @@ ul.secondary li a {
 
 ul.secondary li a:hover,
 ul.secondary li a:focus {
-  background: #f0f0f0;
+  background: var(--color-card-bg, #f5f5f5);
   border-color: #999;
   color: #333;
 }

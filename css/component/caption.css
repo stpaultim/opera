@@ -21,7 +21,7 @@
   margin: 0.5em 0 1em;
   padding: 0.3em 0.5em;
   border: none;
-  border-left: 0.25rem solid #bbbbbb;
+  border-left: 0.25rem solid var(--color-surface-mid, #e0d0d0);
   background: none;
 }
 [dir="rtl"] .caption > figcaption {

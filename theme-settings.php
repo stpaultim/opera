@@ -9,17 +9,37 @@
  */
 function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
-  $form['colors'] = array(
-    '#type' => 'markup',
-    '#markup' => '<p>' . t('Configure colors for this theme on the <a href="!url">Theme Tokens</a> page.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
-  );
+  $design_tokens_active = module_exists('design_tokens');
+
+  if ($design_tokens_active) {
+    $form['colors'] = array(
+      '#type' => 'markup',
+      '#markup' => '<p>' . t('Configure colors and fonts for this theme on the <a href="!url">Design Tokens</a> page.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
+    );
+  }
+  else {
+    // @todo Once Design Tokens is published on BackdropCMS.org, replace the
+    // plain "Design Tokens" text in the message below with a link to its
+    // project page (e.g. https://backdropcms.org/project/design_tokens).
+    // In the meantime it links to the Opera theme page so the placeholder is
+    // obvious and easy to find when the module is live.
+    $design_tokens_url = 'https://backdropcms.org/project/opera';
+    $form['design_tokens_notice'] = array(
+      '#type' => 'markup',
+      '#markup' => '<div class="messages info"><p>' . t('Opera works great out of the box with its built-in color scheme and typography. To unlock full control — custom colors, fonts, and preset schemes — install the <a href="!url" target="_blank" rel="noopener"><strong>Design Tokens</strong></a> module. It replaces Opera\'s default styles with many configurable options (color, font, and others).', array('!url' => $design_tokens_url)) . '</p></div>',
+    );
+  }
+
+  $front_page_description = $design_tokens_active
+    ? t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Design Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera')))
+    : t('The first and last blocks are always white. Middle blocks cycle through the numbered color sets. Install the Design Tokens module to customize these colors.');
 
   $form['front_page'] = array(
     '#type' => 'fieldset',
     '#title' => t('Front Page Block Colors'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
-    '#description' => t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Theme Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera'))),
+    '#description' => $front_page_description,
   );
   $form['front_page']['block_color_sequence'] = array(
     '#type' => 'select',
@@ -37,10 +57,12 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     '#description' => t('Number of distinct block colors before the sequence repeats.'),
   );
 
-  $form['fonts'] = array(
-    '#type' => 'markup',
-    '#markup' => '<p>' . t('Fonts are managed through <a href="!url">Theme Tokens</a>. Google Fonts are loaded automatically based on your selections.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
-  );
+  if ($design_tokens_active) {
+    $form['fonts'] = array(
+      '#type' => 'markup',
+      '#markup' => '<p>' . t('Fonts are managed through <a href="!url">Design Tokens</a>. Google Fonts are loaded automatically based on your selections.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
+    );
+  }
 
   // Recommended modules section.
   // Detect whether the Project Browser is available. If so, we link
@@ -211,7 +233,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     '#title'       => t('Recommended Recipes'),
     '#description' => t('These recipes are supported by Opera with built-in CSS styling. Click a recipe name to visit its project page.'),
     '#collapsible' => TRUE,
-    '#collapsed'   => FALSE,
+    '#collapsed'   => TRUE,
     '#weight'      => 51,
   );
   $form['recommended_recipes']['list'] = array(
@@ -228,7 +250,7 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     '#title'       => t('Recommended Modules'),
     '#description' => t('These modules pair well with Opera. Click a module name to visit its project page, or use the Install / Download link to get it.'),
     '#collapsible' => TRUE,
-    '#collapsed'   => FALSE,
+    '#collapsed'   => TRUE,
     '#weight'      => 50,
   );
   $form['recommended_modules']['list'] = array(

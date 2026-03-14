@@ -45,6 +45,7 @@ stylesheets[all][] = css/opera-component-colors.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/front.css
 stylesheets[all][] = css/opera-variables.css
+stylesheets[all][] = css/opera-derived-variables.css
 
 
 ; Add theme JS files

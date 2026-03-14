@@ -121,7 +121,7 @@
 
 .comment .links.inline a:hover,
 .comment .links.inline a:focus {
-  background: #f0f0f0;
+  background: var(--color-card-bg, #f5f5f5);
   border-color: #999;
   color: #333;
 }

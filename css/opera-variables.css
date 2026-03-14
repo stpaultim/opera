@@ -11,7 +11,6 @@
   --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
 
   --color-card-bg:      color-mix(in srgb, var(--color-primary) 5%, white);
-  --color-surface-mid:  color-mix(in srgb, var(--color-primary) 12%, white);
   --card-border-radius: 0.25rem;
 
   --color-primary:      #6e0e0a;
@@ -30,7 +29,7 @@
   --color-block-2-text: #fff4ff;
   --color-block-2-link: #b2bc24;
 
-  --color-block-3:      #d74e09;
+  --color-block-3:      #c24608;
   --color-block-3-text: #fffff5;
   --color-block-3-link: #b2bc25;
 

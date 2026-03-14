@@ -1,0 +1,16 @@
+/*
+ * Derived CSS custom properties for Opera.
+ *
+ * This file is intentionally NOT listed as the 'variables_file' in tokens.inc,
+ * so it is never removed by the Design Tokens module. It always loads and
+ * computes surface tints from --color-primary, whether --color-primary comes
+ * from opera-variables.css (fallback) or from a Design Tokens injection.
+ *
+ * Do not add tokens here that are registered in tokens.inc — Design Tokens
+ * would inject them after this file and override the color-mix() values.
+ */
+:root {
+  /* Mid-weight surface tint — used for borders, hover states, sidebar
+   * backgrounds, and other UI chrome that should echo the primary colour. */
+  --color-surface-mid: color-mix(in srgb, var(--color-primary, #6e0e0a) 12%, white);
+}

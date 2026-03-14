@@ -15,8 +15,13 @@ Elements only visible to logged-in editors (admin tabs, comment delete/edit/repl
 "Add child page"/"Reorder book") use **hardcoded neutral grays — never theme colors**.
 
 - Active state: `background: #444; color: #fff`
-- Hover state: `background: #f0f0f0; border-color: #999; color: #333`
+- Hover state: `background: var(--color-card-bg); border-color: #999; color: #333`
 - Default state: `border: 1px solid #bbb; color: #555; background: transparent`
+
+The hover state uses `--color-card-bg` (a 5% primary tint into white) rather than a
+hardcoded grey. At that opacity the tint is near-invisible and will never read as a
+theme color — it just provides a subtle lift. Active and default states remain fully
+hardcoded.
 
 **Why:** Admin controls should feel like system UI, not site content. A site architect
 who changes `--color-primary` to blue should not accidentally make "DELETE" look like a
@@ -55,10 +60,28 @@ whether it's a tag or an action. Keep the shapes exclusive to their roles.
 Anything a regular visitor interacts with should pull from Design Tokens:
 - `--button-bg`, `--button-text`, `--button-bg-hover`, `--button-border-radius`
 - `--color-primary`, `--color-primary-text`
+- `--color-card-bg`, `--color-surface-mid` (surface tints derived from primary)
 
 ### Never use tokens for admin-only UI
-Admin controls use hardcoded values. This is intentional — they must not shift when
-a site architect changes the color scheme.
+Admin controls use hardcoded values for active/default states. This is intentional —
+they must not shift when a site architect changes the color scheme.
+
+### Surface tint tokens
+`--color-card-bg` and `--color-surface-mid` are derived from `--color-primary` via
+CSS `color-mix()` and should be used instead of hardcoded greys (`#f5f5f5`, `#dee2ea`,
+`#d0d0d0`, etc.) for all backgrounds, borders, and hover states across the theme.
+
+| Token | Mix | Used for |
+|---|---|---|
+| `--color-card-bg` | 5% primary + white | Card backgrounds, table headers, form surfaces |
+| `--color-surface-mid` | 12% primary + white | Borders, hover states, sidebar backgrounds |
+
+`--color-surface-mid` lives in `opera-derived-variables.css` (never removed by Design
+Tokens module). `--color-card-bg` is also a registered token so admins can override it.
+
+### Never use hardcoded greys for surfaces
+Replace `#f5f5f5`, `#dee2ea`, `#bbbbbb`, `#f0f0f0`, `#d0d0d0`, `#e5e5e6` with the
+appropriate surface token. The only exception is admin-only active/default states.
 
 ### `!important` on color overrides
 `front.css` block link selectors can have very high specificity (up to 7 chained
@@ -106,6 +129,37 @@ For a custom Views block that lists tags or terms, add the CSS class `tag-list` 
 view configuration (*Advanced → CSS class*). Opera will apply the same pill treatment.
 
 The built-in Tags view (`view-tags`) is also supported automatically.
+
+---
+
+## Breadcrumb
+
+Flexbox `ol`, `›` separator via `li + li::before`, primary-color links. The last item
+(current page) is muted grey with `pointer-events: none` — it's where you are, not a
+destination. See `css/component/breadcrumb.css`.
+
+---
+
+## Search results
+
+`.search-results` uses the card treatment (`--color-card-bg` background, border,
+border-radius) matching teasers for visual consistency. The counter number is generated
+via CSS `counter()` + `::before` (absolutely positioned in the left gutter), sized and
+coloured to match the reduced title. `.search-info` meta line uses small muted text with
+the username in primary color. See `css/component/search.css`.
+
+---
+
+## Blockquote and pre/code
+
+**Blockquote**: primary-color left border (0.3rem), 4% primary background tint, italic
+body text. A large decorative `"` quote mark is placed via `::before` using the heading
+font at 25% opacity — Playfair Display makes it look editorial. `<cite>` renders as
+`— attribution` in small muted text.
+
+**Pre/code blocks**: same border weight and background tint as blockquote for visual
+family. `pre` has `overflow-x: auto` to prevent layout overflow. Inline `code` uses
+`--color-card-bg` background with `--color-surface-mid` border.
 
 ---
 
