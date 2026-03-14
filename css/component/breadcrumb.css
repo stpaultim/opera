@@ -2,66 +2,59 @@
  * @file
  * Breadcrumb styles.
  */
+
 .breadcrumb {
-  overflow: hidden;
-  margin:0 0 1em;
+  margin: 0 0 1em;
 }
 
-.breadcrumb ol,
-.breadcrumb li {
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  font-size: 0.85rem;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
-.breadcrumb li {
-  position: relative;
-  padding: 0 1em;
-  float: left; /* LTR */
+/* Separator between items */
+.breadcrumb li + li::before {
+  content: '›';
+  margin: 0 0.4em;
+  color: #aaa;
+  font-size: 1.1em;
+  line-height: 1;
 }
 
-[dir="rtl"] .breadcrumb li {
-  float: right;
+[dir="rtl"] .breadcrumb li + li::before {
+  content: '‹';
 }
 
-.breadcrumb li a,
-.breadcrumb li span {
-  position: relative;
-  z-index: 1;
-  display: block;
-  margin: 0 -1em;
-  padding: 0.5em 1.4em;
+/* Links */
+.breadcrumb a,
+.breadcrumb a:link,
+.breadcrumb a:visited {
+  color: var(--color-primary, #6e0e0a);
   text-decoration: none;
+  padding: 0.2em 0;
 }
 
-.breadcrumb li:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 0px; /* LTR */
-  width: 2em;
-  height: 2em;
-  border: 0.0625rem solid white;
-  border-width: 0.125rem 0.125rem 0 0;
-  -webkit-transform:
-    translate(0, -50%)
-    rotate(45deg); /* LTR */
-  transform:
-    translate(0, -50%)
-    rotate(45deg); /* LTR */
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+  text-decoration: underline;
 }
 
-[dir="rtl"] .breadcrumb li:after {
-  left: 0;
-  right: auto;
-  -webkit-transform:
-    translate(0, -50%)
-    rotate(225deg);
-  transform:
-    translate(0, -50%)
-    rotate(225deg);
-}
-
-.breadcrumb li:last-child:after {
-  display: none;
+/* Last item — current page context, visually quieter */
+.breadcrumb li:last-child a,
+.breadcrumb li:last-child span {
+  color: #666;
+  pointer-events: none;
 }
