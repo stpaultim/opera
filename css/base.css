@@ -197,6 +197,19 @@ table [aria-sort] img {
   visibility: hidden;
 }
 
+/* Core now injects an SVG sort icon into the link; hide the CSS triangle
+ * fallback when the SVG is present to avoid a duplicate caret. */
+table [aria-sort] a:has(svg)::after {
+  display: none;
+}
+
+table [aria-sort] a svg {
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em;
+  margin-left: 0.25em;
+}
+
 tr.even, tr.odd {
   background-color: transparent;
 }
