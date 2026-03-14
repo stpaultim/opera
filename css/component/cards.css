@@ -31,7 +31,7 @@
 
 .view-promoted-cards .views-grid-box {
   border: none;
-  border-radius: 0.25rem;
+  border-radius: var(--card-border-radius, 0.25rem);
   margin: 1rem 0;
   padding: 0 0 1rem 0;
   background-color: #ffffff;

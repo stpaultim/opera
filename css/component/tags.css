@@ -1,0 +1,40 @@
+/**
+ * @file
+ * Styles for taxonomy term tags displayed as pill badges.
+ *
+ * Targets all Backdrop taxonomy term reference fields. Each term link is
+ * styled as a rounded pill using the theme's primary color.
+ */
+
+.field-type-taxonomy-term-reference .field-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+}
+
+.field-type-taxonomy-term-reference .field-item {
+  display: inline-flex;
+}
+
+.field-type-taxonomy-term-reference .field-item a,
+.field-type-taxonomy-term-reference .field-item a:link,
+.field-type-taxonomy-term-reference .field-item a:visited {
+  display: inline-block;
+  padding: 0.2em 0.75em;
+  border-radius: 2em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+  background-color: var(--color-primary);
+  /* !important needed: front.css block link selectors have very high specificity
+   * and would otherwise override the text color inside front-page blocks. */
+  color: var(--color-primary-text) !important;
+  transition: opacity 0.15s ease;
+}
+
+.field-type-taxonomy-term-reference .field-item a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}

@@ -31,6 +31,7 @@ stylesheets[all][] = css/component/maintenance.css
 stylesheets[all][] = css/component/cards.css
 stylesheets[all][] = css/component/teasers.css
 stylesheets[all][] = css/component/comment.css
+stylesheets[all][] = css/component/tags.css
 stylesheets[all][] = css/component/caption.css
 stylesheets[all][] = css/component/views.css
 stylesheets[all][] = css/component/opera-views.css

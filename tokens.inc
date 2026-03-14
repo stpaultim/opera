@@ -34,6 +34,10 @@ $info = array(
       'label' => t('Hero Blocks'),
       'description' => t('Colors for hero blocks that do not have a custom background image. These appear as a colored banner at the top of the page.'),
     ),
+    'cards' => array(
+      'label' => t('Cards & Teasers'),
+      'description' => t('Background color and corner radius for content cards, post teasers, and similar framed content.'),
+    ),
     'block_1' => array(
       'label' => t('Block Color Set 1'),
       'description' => t('On the front page, blocks in the content region cycle through these color sets. The first and last blocks are always white. Middle blocks rotate through the numbered sets (1 &rarr; 2 &rarr; 3 &rarr; 1 &rarr; 2 &rarr; 3&hellip;). You can change the number of sets being used in the <a href="!settings_url">theme settings</a>.', array('!settings_url' => url('admin/appearance/settings/opera'))),
@@ -188,6 +192,20 @@ $info = array(
       'type'    => 'color',
       'default' => '#b2bc22',
       'group'   => 'hero',
+    ),
+
+    // Cards & Teasers
+    'color-card-bg' => array(
+      'label'   => t('Card background'),
+      'type'    => 'color',
+      'default' => '#f5f5f5',
+      'group'   => 'cards',
+    ),
+    'card-border-radius' => array(
+      'label'   => t('Corner radius'),
+      'type'    => 'text',
+      'default' => '0.25rem',
+      'group'   => 'cards',
     ),
 
     // Block Color Set 1 (Soprano)
