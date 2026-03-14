@@ -22,16 +22,41 @@ figure {
 }
 
 blockquote {
-  border-left: 0.25rem solid #bbbbbb; /* LTR */
-}
-[dir="rtl"] blockquote {
-  border-left: none;
-  border-right: 0.25rem solid #bbbbbb;
+  position: relative;
+  margin: 1.5em 0;
+  padding: 1rem 1.5rem 1rem 2.25rem;
+  border-left: 0.3rem solid var(--color-primary, #6e0e0a); /* LTR */
+  background-color: rgba(110, 14, 10, 0.04);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #333;
 }
 
-blockquote {
-  margin: 0.5em 0 1em;
-  padding: 0.8em 1.3em;
+[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: 0.3rem solid var(--color-primary, #6e0e0a);
+  padding-left: 1.5rem;
+  padding-right: 2.25rem;
+}
+
+/* Decorative opening quote mark */
+blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.1rem;
+  left: 0.45rem;
+  font-family: var(--font-heading, Georgia, serif);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--color-primary, #6e0e0a);
+  opacity: 0.25;
+  font-style: normal;
+}
+
+[dir="rtl"] blockquote::before {
+  content: '\201D';
+  left: auto;
+  right: 0.45rem;
 }
 
 blockquote > :first-child {
@@ -42,10 +67,28 @@ blockquote > :last-child {
   margin-bottom: 0;
 }
 
+/* Attribution / cite */
+blockquote cite {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  font-style: normal;
+  color: #666;
+}
+
+blockquote cite::before {
+  content: '— ';
+}
+
 pre,
 code {
   font-family: Consolas, 'Lucida Console', 'Courier New', monospace;
   color: #20252e;
+}
+
+pre {
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 code {
@@ -59,8 +102,9 @@ pre code {
   margin: 0;
   padding: 0.8em 1.3em;
   border: 0;
-  border-left: 0.25rem solid #bbbbbb;
-  background: transparent;
+  border-left: 0.3rem solid var(--color-primary, #6e0e0a);
+  background: rgba(110, 14, 10, 0.04);
+  font-style: normal;
 }
 
 code p {
