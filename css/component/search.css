@@ -1,0 +1,87 @@
+/**
+ * @file
+ * Search results page styling.
+ */
+
+/* =====================================================================
+   Results list
+   ===================================================================== */
+
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: search-item;
+}
+
+.search-results > li {
+  counter-increment: search-item;
+  position: relative;
+  padding: 1rem 1.25rem 1rem 3rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--color-card-bg, #f5f5f5);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: var(--card-border-radius, 0.25rem);
+}
+
+/* Counter number — sized and coloured to match the reduced title */
+.search-results > li::before {
+  content: counter(search-item);
+  position: absolute;
+  left: 0.75rem;
+  top: 1rem;
+  width: 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-heading, Georgia, serif);
+  color: var(--color-primary, #6e0e0a);
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* =====================================================================
+   Result title
+   ===================================================================== */
+
+.search-results h3.title {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.search-results h3.title a {
+  text-decoration: none;
+}
+
+.search-results h3.title a:hover,
+.search-results h3.title a:focus {
+  text-decoration: underline;
+}
+
+/* =====================================================================
+   Snippet and meta
+   ===================================================================== */
+
+.search-snippet {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 0.4rem;
+}
+
+.search-info {
+  font-size: 0.78rem;
+  color: #999;
+  margin: 0;
+}
+
+.search-info a.username {
+  font-weight: 600;
+  color: var(--color-primary, #6e0e0a);
+  text-decoration: none;
+}
+
+.search-info a.username:hover,
+.search-info a.username:focus {
+  text-decoration: underline;
+}
