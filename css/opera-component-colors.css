@@ -6,15 +6,12 @@
  * at runtime by the Design Tokens module when active.
  */
 
-.l-header,
 .l-footer {
   background-color: var(--color-primary);
   color: var(--color-primary-text);
 }
 
-.l-header a,
 .l-footer a,
-.l-header a:visited,
 .l-footer a:visited {
   color: var(--color-primary-link);
 }

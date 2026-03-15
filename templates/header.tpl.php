@@ -28,7 +28,7 @@
           <?php // Strong class only added for semantic value ?>
           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" class="header-site-name-link" rel="home">
             <?php if ($logo): ?>
-              <div class="<?php print implode(' ', $logo_wrapper_classes); ?>">
+              <div class="header-logo-wrapper">
                 <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header-logo" <?php print backdrop_attributes($logo_attributes); ?> />
               </div>
             <?php endif; ?>

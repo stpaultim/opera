@@ -83,47 +83,25 @@
 }
 
 /**
- * Prevent double padding when block--inner-wrapper.container is nested
- * inside .l-header-inner.container on the front page.
+ * Header blocks fill the full width of .l-header (no container on
+ * .l-header-inner). Content inside each block is constrained by
+ * .block--inner-wrapper acting as the container.
  */
-.l-header .block--inner-wrapper.container {
-  padding-left: 0;
-  padding-right: 0;
+.l-header .block--inner-wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /**
- * Navigation bar — main menu block inside the header region.
- *
- * Extends the background edge-to-edge using a pseudo-element. The
- * overflow-x: clip on .l-header prevents horizontal scroll without
- * clipping dropdown menus, which extend downward (not horizontally).
+ * Navigation bar — the main menu block gets the primary brand color.
+ * Because .l-header-inner has no container class, this block is
+ * naturally full-width and its background extends edge-to-edge.
  */
-.l-header {
-  overflow-x: clip;
-}
-
 .l-header .block-system-main-menu {
-  position: relative;
   background: var(--color-primary, #6e0e0a);
-}
-
-/* Bleed the nav bar background to full viewport width. */
-.l-header .block-system-main-menu::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -100vw;
-  right: -100vw;
-  background: inherit;
-  z-index: 0;
-}
-
-/* Keep nav content above the pseudo-element background. */
-.l-header .block-system-main-menu .block--inner-wrapper,
-.l-header .block-system-main-menu .block-content {
-  position: relative;
-  z-index: 1;
 }
 
 /**

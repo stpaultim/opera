@@ -91,6 +91,35 @@ selector weight.
 
 ---
 
+## Split header architecture
+
+Opera uses a two-bar header: a **logo bar** above and a **nav bar** below.
+
+- **Logo bar** — background: `--color-header-bg` (white by default). Contains the site name/logo and utility links.
+- **Nav bar** — background: `--color-primary`. Contains the main navigation menu. Also matches the footer color, so nav and footer visually bookend the content.
+
+**How it works:**
+
+The layout templates use `<div class="l-header-inner">` with **no container class**. This makes all blocks in the header region naturally full-width. Each block's content is constrained by:
+
+```css
+.l-header .block--inner-wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+```
+
+The nav bar color is applied directly to `.block-system-main-menu` in `header.css`. Because that block is full-width (no outer container), its background extends edge-to-edge.
+
+**Critical:** Never add `container` or `container-fluid` back to `.l-header-inner`. That would constrain both blocks together and break the two-bar split.
+
+Both colors are Design Token–controlled: `color-header-bg` / `color-header-text` (logo bar) and `color-primary` / `color-primary-text` / `color-primary-link` (nav + footer).
+
+---
+
 ## Container nesting rule
 
 Backdrop's Bootstrap grid gives `.container` and `.container-fluid` `padding: 0 15px`.
@@ -108,10 +137,10 @@ Established patterns:
 /* Footer: all nested containers (blocks, flexible layout rows) */
 .l-footer-inner .container,
 .l-footer-inner .container-fluid { padding-left: 0; padding-right: 0; }
-
-/* Front-page block inner wrappers in header */
-.l-header .block--inner-wrapper.container { padding-left: 0; padding-right: 0; }
 ```
+
+Note: The header region no longer uses a container on `.l-header-inner` — each block
+carries its own constraint via `.l-header .block--inner-wrapper`. See split header section above.
 
 When adding new regions or block types, check whether content aligns with the page
 title before shipping. The browser devtools left-edge coordinate is the quickest check:
