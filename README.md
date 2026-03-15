@@ -1,5 +1,9 @@
 # Opera
 
+### Need testing and feedback on the 2.x branch of Opera. This is a MAJOR rewrite with new features and will not be backward compatible.  Best when tested with https://github.com/stpaultim/design_tokens. The Design Tokens module is a possible alternative to the color module. Need feedback on this idea. 
+
+### Read below for details.
+
 Opera is a Backdrop CMS theme designed for sites that use stacked, full-width panels on the
 front page with alternating background colors. It is approachable for people new to Backdrop
 and offers significant customization through the admin UI — no CSS required.
