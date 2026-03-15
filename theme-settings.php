@@ -34,6 +34,26 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     ? t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Design Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera')))
     : t('The first and last blocks are always white. Middle blocks cycle through the numbered color sets. Install the Design Tokens module to customize these colors.');
 
+  $form['header'] = array(
+    '#type'        => 'fieldset',
+    '#title'       => t('Header'),
+    '#collapsible' => TRUE,
+    '#collapsed'   => FALSE,
+    '#weight'      => 5,
+  );
+  $form['header']['logo_size'] = array(
+    '#type'          => 'select',
+    '#title'         => t('Logo size'),
+    '#options'       => array(
+      'small'  => t('Small (48px)'),
+      'medium' => t('Medium (72px)'),
+      'large'  => t('Large (96px)'),
+      'xlarge' => t('X-Large (128px)'),
+    ),
+    '#default_value' => theme_get_setting('logo_size', 'opera') ?: 'medium',
+    '#description'   => t('Maximum height of the logo image in the header bar. Choose a larger size for logos with fine detail or complex wordmarks, smaller for simple icon-style marks.'),
+  );
+
   $form['front_page'] = array(
     '#type' => 'fieldset',
     '#title' => t('Front Page Block Colors'),

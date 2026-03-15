@@ -12,36 +12,43 @@
  * link color adjusts itself.
  */
 function opera_css_alter(&$css) {
-  if (!function_exists('design_tokens_get_values')) {
-    return;
-  }
-
-  $values = design_tokens_get_values('opera');
   $properties = array();
 
-  for ($i = 1; $i <= 8; $i++) {
-    $bg_token = 'color-block-' . $i;
-    if (!empty($values[$bg_token])) {
-      $is_dark = _opera_color_is_dark($values[$bg_token]);
+  // Logo height variable — always injected so it works without Design Tokens.
+  $size_map = array(
+    'small'  => '48px',
+    'medium' => '72px',
+    'large'  => '96px',
+    'xlarge' => '128px',
+  );
+  $logo_size   = theme_get_setting('logo_size', 'opera') ?: 'medium';
+  $logo_height = isset($size_map[$logo_size]) ? $size_map[$logo_size] : '72px';
+  $properties[] = '  --logo-max-height: ' . $logo_height . ';';
 
-      // Compute text color: inverted (light) for dark backgrounds, default
-      // (dark) for light backgrounds.
-      $properties[] = '  --color-block-' . $i . '-text: var('
-        . ($is_dark ? '--color-text-inverted, #ffffff' : '--color-text-default, #1a1a1a')
-        . ');';
+  // Block link colors — only when Design Tokens is active.
+  if (function_exists('design_tokens_get_values')) {
+    $values = design_tokens_get_values('opera');
 
-      // Compute link color using the same luminance decision.
-      $properties[] = '  --color-block-' . $i . '-link: var('
-        . ($is_dark ? '--link-color-inverted, #f0e6b8' : '--link-color, #6e0e0a')
-        . ');';
+    for ($i = 1; $i <= 8; $i++) {
+      $bg_token = 'color-block-' . $i;
+      if (!empty($values[$bg_token])) {
+        $is_dark = _opera_color_is_dark($values[$bg_token]);
+
+        // Compute text color: inverted (light) for dark backgrounds, default
+        // (dark) for light backgrounds.
+        $properties[] = '  --color-block-' . $i . '-text: var('
+          . ($is_dark ? '--color-text-inverted, #ffffff' : '--color-text-default, #1a1a1a')
+          . ');';
+
+        // Compute link color using the same luminance decision.
+        $properties[] = '  --color-block-' . $i . '-link: var('
+          . ($is_dark ? '--link-color-inverted, #f0e6b8' : '--link-color, #6e0e0a')
+          . ');';
+      }
     }
   }
 
-  if (empty($properties)) {
-    return;
-  }
-
-  $css['opera_computed_link_colors'] = array(
+  $css['opera_computed_vars'] = array(
     'data'       => ":root {\n" . implode("\n", $properties) . "\n}",
     'type'       => 'inline',
     'group'      => CSS_THEME,

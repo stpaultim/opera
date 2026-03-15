@@ -216,88 +216,71 @@
   display: none;
 }
 
-/* Header layout grid */
-.block-system-header {
-  min-height: 75px;
-}
-
+/* Header layout */
 .block-system-header .block-content {
-  display: grid;
-  grid-template-columns: 40% 60%;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
 }
 
-.header-logo-wrapper img,
-.header-logo-wrapper {
-  max-width: none;
-  width: auto;
-  max-height: 70px;
-  margin: 15px 0;
+/* Identity area (logo + site name) grows to fill available space */
+.header-identity-wrapper {
+  flex: 1;
+  min-width: 0;
 }
 
 .header-site-name-wrapper {
-  align-self: center;
-  min-height: 75px;
-  display: grid;
+  display: block;
 }
 
-.header-site-name-wrapper img {
-  padding: 20px 20px 20px 0;
-}
-
-.block-content .header-identity-wrapper .header-site-name-wrapper a:hover {
+/* Anchor wrapping logo + site name side-by-side */
+.header-site-name-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  text-align: left;
   text-decoration: none;
-  font-weight: bold;
+}
+
+.header-logo-wrapper {
+  flex-shrink: 0;
+}
+
+.header-logo-wrapper img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: var(--logo-max-height, 72px);
 }
 
 .header-identity-wrapper strong {
-  font-size: 30px;
+  font-size: 1.875rem; /* 30px */
   font-weight: bold;
-  float: left;
 }
 
-.block-system-header .block-content .header-menu {
-  justify-self: end;
-}
-
+/* Menu stays on the right */
 .header-menu {
+  flex-shrink: 0;
   text-align: right;
 }
 
-.header-site-name-link {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  font-size: 2.5rem;
-  line-height: 1.75rem;
-  text-align: left;
-  align-self: center;
-}
-
 @media (max-width: 990px) {
-  .header-site-name-link,
-  .header-identity-wrapper,
   .block-system-header .block-content {
-    display: block;
-  }
-
-  .block-system-header .block-content {
-    position: relative;
+    flex-wrap: wrap;
   }
 
   .header-identity-wrapper {
+    flex: none;
     width: 100%;
-  }
-
-  .header-site-name-wrapper img,
-  .header-logo-wrapper {
-    display: block;
-    float: left;
   }
 }
 
 @media (max-width: 550px) {
   .header-identity-wrapper strong {
-    font-size: 26px;
+    font-size: 1.625rem; /* 26px */
   }
 }
