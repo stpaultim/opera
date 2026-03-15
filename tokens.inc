@@ -14,9 +14,13 @@ $info = array(
   'variables_file' => 'css/opera-variables.css',
 
   'groups' => array(
+    'header_bar' => array(
+      'label' => t('Header / Logo Bar'),
+      'description' => t('Colors for the top bar containing your logo and site name. This sits above the navigation bar and is typically light or white.'),
+    ),
     'header' => array(
-      'label' => t('Header & Footer (Primary Colors)'),
-      'description' => t('The <strong>Background</strong> color here is the site\'s primary brand color. It controls the header and footer background, but also drives buttons, links, borders, blockquotes, and UI accents across the entire site. Choose it as your main brand color, not just a header color.'),
+      'label' => t('Navigation & Footer (Primary Colors)'),
+      'description' => t('The <strong>Background</strong> color here is the site\'s primary brand color. It controls the navigation bar and footer background, but also drives buttons, links, borders, blockquotes, and UI accents across the entire site. Choose it as your main brand color.'),
     ),
     'buttons' => array(
       'label' => t('Buttons'),
@@ -152,22 +156,37 @@ $info = array(
       'group'   => 'links',
     ),
 
-    // Header & Footer
+    // Header / Logo Bar
+    'color-header-bg' => array(
+      'label'   => t('Background'),
+      'type'    => 'color',
+      'default' => '#ffffff',
+      'group'   => 'header_bar',
+    ),
+    'color-header-text' => array(
+      'label'   => t('Text & links'),
+      'type'    => 'color',
+      'default' => '#1a1a1a',
+      'group'   => 'header_bar',
+      'contrast_with' => 'color-header-bg',
+    ),
+
+    // Navigation & Footer
     'color-primary' => array(
-      'label'   => t('Primary brand color'),
+      'label'   => t('Background'),
       'type'    => 'color',
       'default' => '#6e0e0a',
       'group'   => 'header',
       'utility' => TRUE,
     ),
     'color-primary-text' => array(
-      'label'   => t('Header & footer text'),
+      'label'   => t('Text'),
       'type'    => 'color',
       'default' => '#fff6ff',
       'group'   => 'header',
     ),
     'color-primary-link' => array(
-      'label'   => t('Header & footer links'),
+      'label'   => t('Links'),
       'type'    => 'color',
       'default' => '#b2bc21',
       'group'   => 'header',

@@ -17,6 +17,8 @@
         "link-color-inverted": "#f0e6b8",
         "color-text-default": "#1a1a1a",
         "color-text-inverted": "#ffffff",
+        "color-header-bg": "#ffffff",
+        "color-header-text": "#1a1a1a",
         "color-primary": "#6e0e0a",
         "color-primary-text": "#fff6ff",
         "color-primary-link": "#b2bc21",

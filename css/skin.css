@@ -34,83 +34,95 @@ a:active {
    Header
    ===================================================================== */
 
+/* Logo bar — sits above the navigation bar. */
 .l-header {
-  background: var(--color-primary, #20252e);
-  color: #fffffe;
+  background: var(--color-header-bg, #ffffff);
+  color: var(--color-header-text, #1a1a1a);
 }
 
 .l-header a {
-  color: #fffffe;
+  color: var(--color-header-text, #1a1a1a);
   text-decoration: none;
 }
 
-.header-menu a:hover,
-.header-menu a:focus,
-.header-menu a:active {
-  background: transparent;
+.l-header a:hover,
+.l-header a:focus {
   text-decoration: underline;
+}
+
+/* Navigation bar — the main menu block inside the header region. */
+.l-header .block-system-main-menu,
+.l-header .block-system-main-menu a {
+  color: var(--color-primary-link, #b2bc21);
+}
+
+.l-header .block-system-main-menu a:hover,
+.l-header .block-system-main-menu a:focus,
+.l-header .block-system-main-menu a:active {
+  color: var(--color-primary-text, #fff6ff);
+  text-decoration: none;
 }
 
 /* Dropdown menus */
 @media (min-width: 48em) {
   .js .menu-dropdown > li:hover {
-    background-color: var(--color-primary, #20252e);
+    background-color: var(--color-primary, #6e0e0a);
     filter: brightness(80%);
   }
 
   .js .menu-dropdown > li:hover a {
-    color: #ffffff;
+    color: var(--color-primary-link, #b2bc21);
   }
 
   .menu-dropdown ul {
-    background: #20252e;
+    background: color-mix(in srgb, var(--color-primary, #6e0e0a) 85%, black);
   }
 
   .menu-dropdown ul a,
   .menu-dropdown ul a:hover,
   .menu-dropdown ul a:focus,
   .menu-dropdown ul a:active {
-    color: #fffffe;
+    color: var(--color-primary-link, #b2bc21);
   }
 
   .menu-dropdown ul a:hover,
   .menu-dropdown ul a:focus,
   .menu-dropdown ul a:active {
-    background: #114a75;
+    background: color-mix(in srgb, var(--color-primary, #6e0e0a) 70%, black);
   }
 
   .menu-dropdown a span.sub-arrow {
-    border-top-color: #fffffe;
+    border-top-color: var(--color-primary-link, #b2bc21);
   }
 
   .menu-dropdown ul a span.sub-arrow {
-    border-left-color: #fffffe;
+    border-left-color: var(--color-primary-link, #b2bc21);
   }
 
   .menu-dropdown span.scroll-up,
   .menu-dropdown span.scroll-down {
-    background: #fffffe;
+    background: var(--color-primary-text, #fff6ff);
   }
 
   .menu-dropdown span.scroll-up-arrow,
   .menu-dropdown span.scroll-down-arrow {
-    border-bottom-color: #ffffff;
+    border-bottom-color: var(--color-primary-link, #b2bc21);
   }
 
   .menu-dropdown span.scroll-down-arrow {
-    border-top-color: #ffffff;
+    border-top-color: var(--color-primary-link, #b2bc21);
   }
 
   [dir="rtl"] .menu-dropdown span.sub-arrow {
-    border-right-color: #ffffff;
+    border-right-color: var(--color-primary-link, #b2bc21);
   }
 
   .js .menu-dropdown > li {
-    border-bottom-color: #bbbbbb;
+    border-bottom-color: color-mix(in srgb, var(--color-primary, #6e0e0a) 70%, black);
   }
 
   .js .menu-dropdown ul ul {
-    border-left-color: #20252e;
+    border-left-color: color-mix(in srgb, var(--color-primary, #6e0e0a) 70%, black);
   }
 }
 

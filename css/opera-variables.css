@@ -13,6 +13,9 @@
   --color-card-bg:      color-mix(in srgb, var(--color-primary) 5%, white);
   --card-border-radius: 0.25rem;
 
+  --color-header-bg:    #ffffff;
+  --color-header-text:  #1a1a1a;
+
   --color-primary:      #6e0e0a;
   --color-primary-text: #fff6ff;
   --color-primary-link: #b2bc21;

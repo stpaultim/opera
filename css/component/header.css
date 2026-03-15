@@ -92,6 +92,41 @@
 }
 
 /**
+ * Navigation bar — main menu block inside the header region.
+ *
+ * Extends the background edge-to-edge using a pseudo-element. The
+ * overflow-x: clip on .l-header prevents horizontal scroll without
+ * clipping dropdown menus, which extend downward (not horizontally).
+ */
+.l-header {
+  overflow-x: clip;
+}
+
+.l-header .block-system-main-menu {
+  position: relative;
+  background: var(--color-primary, #6e0e0a);
+}
+
+/* Bleed the nav bar background to full viewport width. */
+.l-header .block-system-main-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100vw;
+  right: -100vw;
+  background: inherit;
+  z-index: 0;
+}
+
+/* Keep nav content above the pseudo-element background. */
+.l-header .block-system-main-menu .block--inner-wrapper,
+.l-header .block-system-main-menu .block-content {
+  position: relative;
+  z-index: 1;
+}
+
+/**
  * Menus in header area
  */
 .header-menu {
@@ -162,7 +197,7 @@
   padding: .5rem 0;
 }
 .l-header .menu-toggle-button-text {
-  color: #bcbbbb;
+  color: var(--color-primary-link, #b2bc21);
 }
 
 @media (min-width: 34em) {

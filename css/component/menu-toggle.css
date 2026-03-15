@@ -5,5 +5,5 @@
 .menu-toggle-button-icon,
 .menu-toggle-button-icon::before,
 .menu-toggle-button-icon::after {
-  background-color: #bcbbbb;
+  background-color: var(--color-primary-link, #b2bc21);
 }
