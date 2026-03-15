@@ -1,76 +1,8 @@
 /* Portfolio Projects
    ========================================================================== */
 
-.view-portfolio-projects .views-view-grid-cols-6 {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-}
+/* Will come back to this one later. @TODO */
 
-.view-portfolio-projects .views-grid-box {
-  text-align: center;
-}
-
-.view-portfolio-projects .views-field-field-project-image img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  display: block;
-  border-radius: 4px;
-}
-
-.view-portfolio-projects .views-field-title h3 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin: 0.5rem 0 0;
-}
-
-.view-portfolio-projects .views-field-title h3 a {
-  text-decoration: none;
-}
-
-.view-portfolio-projects .views-field-title h3 a:hover {
-  text-decoration: underline;
-}
-
-/* Page display uses cols-3 with larger images */
-.view-portfolio-projects .views-view-grid-cols-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.view-portfolio-projects .views-view-grid-cols-3 .views-grid-box {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.view-portfolio-projects .views-view-grid-cols-3 .views-field-field-project-image {
-  order: -1;
-}
-
-.view-portfolio-projects .views-view-grid-cols-3 .views-field-title h3 {
-  font-size: 1.35rem;
-}
-
-@media (max-width: 62em) {
-  .view-portfolio-projects .views-view-grid-cols-6 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .view-portfolio-projects .views-view-grid-cols-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 34em) {
-  .view-portfolio-projects .views-view-grid-cols-6 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .view-portfolio-projects .views-view-grid-cols-3 {
-    grid-template-columns: 1fr;
-  }
-}
 
 
 /* Services
