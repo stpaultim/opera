@@ -28,18 +28,48 @@ The signature Opera layout uses Backdrop's Boxton layout on the front page. Bloc
 content region extend the full width of the screen with their own background colors. The
 first and last blocks are always white; middle blocks cycle through your chosen color sets.
 
+### Two-bar split header
+Opera uses a two-bar header: a **logo bar** above (white by default) and a **nav bar** below
+(your primary brand color). Each bar has independent color controls so the nav bar can match
+the footer while the logo area stays neutral. Both colors are Design Token–controlled.
+
+### Flexible logo
+The header supports two logo modes, configured under **Appearance > Settings > Opera**:
+
+- **Image** — upload a logo via the standard site settings
+- **Phosphor icon** — choose any icon from Backdrop's built-in Phosphor icon set by name.
+  The icon automatically inherits your header text color, so it adapts when you change your
+  color scheme. A live preview updates as you type the icon name.
+
+A **Logo size** setting (Small / Medium / Large / X-Large) controls the maximum height of
+the logo in the header bar, accommodating everything from compact icon marks to wide
+illustrated wordmarks.
+
+### Polished navigation menu
+Top-level navigation links are displayed in white semi-bold text against the primary color
+bar for strong readability. Interactive feedback includes:
+
+- A sliding accent bar that animates in on hover (color controlled by the Secondary / Accent
+  token, independent of link colors)
+- A lighter background highlight on hovered items
+- Consistent semi-bold weight and white text in dropdown sub-menus
+
 ### Design Tokens integration
 Opera uses the [Design Tokens](https://backdropcms.org/project/design_tokens) module to
 manage all visual configuration. From a single admin page you can change:
 
-- **Color sets** — background colors for the header, hero blocks, and each cycling block
-  set (up to 8 sets). Text and link colors are calculated automatically based on whether
-  the background is light or dark — you only set the background.
-- **Fonts** — heading and body font families, with Google Fonts support built in
+- **Header / Logo Bar** — background and text color for the logo bar
+- **Navigation & Footer (Primary Colors)** — background, text, and link colors for the nav
+  bar and footer
+- **Secondary / Accent Color** — the highlight bar color used on nav menu hover states,
+  independent of link colors
 - **Buttons** — background, text, hover, border radius, and text transform
 - **Links** — color, hover color, visited color, and underline behavior
-- **Global text colors** — inverted (light) and default (dark) text colors used on colored
-  blocks
+- **Typography** — heading and body font families, with Google Fonts support built in
+- **Hero Blocks** — colors for hero blocks without a custom image
+- **Cards & Teasers** — card background color and corner radius
+- **Block Color Sets** — up to 8 background colors for cycling front-page blocks. Text and
+  link colors are calculated automatically based on whether the background is light or dark.
 
 Changes are reflected in a live preview alongside the form — no page reload required.
 
@@ -58,14 +88,17 @@ requirements against their background.
 ## Requirements
 
 - Backdrop CMS 1.x
-- [Design Tokens](https://backdropcms.org/project/design_tokens) module
-- `design_tokens_color` and `design_tokens_font` sub-modules (included with Design Tokens)
+
+The [Design Tokens](https://backdropcms.org/project/design_tokens) module and its
+`design_tokens_color` and `design_tokens_font` sub-modules are strongly recommended. Opera
+works without them using its built-in default styles, but full color and font customization
+requires Design Tokens.
 
 ## Setup
 
-1. Enable the Design Tokens module and its `design_tokens_color` and `design_tokens_font`
-   sub-modules at **Functionality > Modules**.
-2. Set Opera as your default theme at **Appearance**.
+1. Set Opera as your default theme at **Appearance**.
+2. Install and enable the Design Tokens module and its `design_tokens_color` and
+   `design_tokens_font` sub-modules at **Functionality > Modules**.
 3. Configure your site's appearance at **Appearance > Design Tokens > Opera**.
 4. Set your front page to use the **Boxton** layout at **Structure > Layouts**.
 5. Add blocks to the Boxton layout's content region — they will automatically receive
