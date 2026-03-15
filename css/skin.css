@@ -51,52 +51,66 @@ a:active {
 }
 
 /* Navigation bar — the main menu block inside the header region. */
-.l-header .block-system-main-menu,
-.l-header .block-system-main-menu a {
+.l-header .block-system-main-menu {
   color: var(--color-primary-link, #b2bc21);
 }
 
-.l-header .block-system-main-menu a:hover,
-.l-header .block-system-main-menu a:focus,
-.l-header .block-system-main-menu a:active {
-  color: var(--color-primary-text, #fff6ff);
+/* Top-level nav links use primary-text (white) for readability on the dark
+ * nav background. Dropdown sub-menu links keep --color-primary-link since
+ * they sit on an even darker sub-menu background. */
+.l-header .block-system-main-menu .menu-dropdown > li > a {
+  color: var(--color-primary-text, #ffffff);
+}
+
+.l-header .block-system-main-menu .menu-dropdown > li > a:hover,
+.l-header .block-system-main-menu .menu-dropdown > li > a:focus,
+.l-header .block-system-main-menu .menu-dropdown > li > a:active {
+  color: var(--color-primary-text, #ffffff);
   text-decoration: none;
 }
 
 /* Dropdown menus */
 @media (min-width: 48em) {
   .js .menu-dropdown > li:hover {
-    background-color: var(--color-primary, #6e0e0a);
-    filter: brightness(80%);
+    background-color: color-mix(in srgb, var(--color-primary, #6e0e0a) 75%, white);
+    filter: none;
   }
 
   .js .menu-dropdown > li:hover a {
     color: var(--color-primary-link, #b2bc21);
   }
 
+  /* Top-level links stay white even when the parent li has the hover filter. */
+  .l-header .block-system-main-menu .menu-dropdown > li:hover > a {
+    color: var(--color-primary-text, #ffffff);
+  }
+
   .menu-dropdown ul {
     background: color-mix(in srgb, var(--color-primary, #6e0e0a) 85%, black);
+    border: none;
   }
 
-  .menu-dropdown ul a,
+  .l-header .block-system-main-menu .menu-dropdown ul a,
+  .l-header .block-system-main-menu .menu-dropdown ul a:hover,
+  .l-header .block-system-main-menu .menu-dropdown ul a:focus,
+  .l-header .block-system-main-menu .menu-dropdown ul a:active {
+    color: var(--color-primary-text, #ffffff);
+  }
+
   .menu-dropdown ul a:hover,
   .menu-dropdown ul a:focus,
   .menu-dropdown ul a:active {
-    color: var(--color-primary-link, #b2bc21);
-  }
-
-  .menu-dropdown ul a:hover,
-  .menu-dropdown ul a:focus,
-  .menu-dropdown ul a:active {
-    background: color-mix(in srgb, var(--color-primary, #6e0e0a) 70%, black);
+    background: color-mix(in srgb, var(--color-primary, #6e0e0a) 70%, white);
+    /* Left accent mirrors the top-level bottom bar — same weight, same color. */
+    box-shadow: inset 5px 0 0 var(--color-secondary, #b2bc21);
   }
 
   .menu-dropdown a span.sub-arrow {
     border-top-color: var(--color-primary-link, #b2bc21);
   }
 
-  .menu-dropdown ul a span.sub-arrow {
-    border-left-color: var(--color-primary-link, #b2bc21);
+  .l-header .block-system-main-menu .menu-dropdown ul a span.sub-arrow {
+    border-left-color: var(--color-primary-text, #ffffff);
   }
 
   .menu-dropdown span.scroll-up,

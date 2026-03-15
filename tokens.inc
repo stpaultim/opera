@@ -22,6 +22,10 @@ $info = array(
       'label' => t('Navigation & Footer (Primary Colors)'),
       'description' => t('The <strong>Background</strong> color here is the site\'s primary brand color. It controls the navigation bar and footer background, but also drives buttons, links, borders, blockquotes, and UI accents across the entire site. Choose it as your main brand color.'),
     ),
+    'secondary' => array(
+      'label' => t('Secondary / Accent Color'),
+      'description' => t('A complementary accent color used for interactive highlights — the active indicator bar on the navigation menu, hover accents on dropdown items, and similar decorative elements. Keeping this separate from the navigation link color means you can tune the two independently.'),
+    ),
     'buttons' => array(
       'label' => t('Buttons'),
       'description' => t('Controls the appearance of primary buttons and form submit buttons across the site.'),
@@ -70,6 +74,15 @@ $info = array(
       'type'    => 'font',
       'default' => "'Lato', 'Helvetica Neue', Arial, sans-serif",
       'group'   => 'typography',
+      'utility' => TRUE,
+    ),
+
+    // Secondary / Accent
+    'color-secondary' => array(
+      'label'   => t('Accent color'),
+      'type'    => 'color',
+      'default' => '#b2bc21',
+      'group'   => 'secondary',
       'utility' => TRUE,
     ),
 
@@ -311,6 +324,7 @@ $info = array(
         'color-primary'      => '#6e0e0a',
         'color-primary-text' => '#fff6ff',
         'color-primary-link' => '#b2bc21',
+        'color-secondary'    => '#b2bc21',
         'color-hero'         => '#f0f0c9',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#b2bc22',
@@ -327,6 +341,7 @@ $info = array(
         'color-primary'      => '#1c2541',
         'color-primary-text' => '#fef3ff',
         'color-primary-link' => '#7ec8c8',
+        'color-secondary'    => '#7ec8c8',
         'color-hero'         => '#e8f4f8',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#1c6ea4',
@@ -343,6 +358,7 @@ $info = array(
         'color-primary'      => '#c0392b',
         'color-primary-text' => '#ffffff',
         'color-primary-link' => '#f9ca24',
+        'color-secondary'    => '#f9ca24',
         'color-hero'         => '#ffeaa7',
         'color-hero-text'    => '#ffffff',
         'color-hero-link'    => '#c0392b',
@@ -359,6 +375,7 @@ $info = array(
         'color-primary'      => '#1a1a2e',
         'color-primary-text' => '#e0e0e0',
         'color-primary-link' => '#e94560',
+        'color-secondary'    => '#e94560',
         'color-hero'         => '#16213e',
         'color-hero-text'    => '#c0c0c0',
         'color-hero-link'    => '#e94560',

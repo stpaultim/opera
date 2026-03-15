@@ -220,6 +220,46 @@
   margin-top: 0.2rem;
 }
 
+/* Nav menu — top-level links: semi-bold weight and sliding underline on hover. */
+.l-header .block-system-main-menu .menu-dropdown > li > a {
+  font-weight: 600;
+  position: relative;
+}
+
+.l-header .block-system-main-menu .menu-dropdown > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--color-secondary, #b2bc21);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.l-header .block-system-main-menu .menu-dropdown > li > a:hover::after,
+.l-header .block-system-main-menu .menu-dropdown > li > a:focus::after {
+  transform: scaleX(1);
+}
+
+/* Active / current page gets the underline permanently. */
+.l-header .block-system-main-menu .menu-dropdown > li.active-trail > a::after,
+.l-header .block-system-main-menu .menu-dropdown > li > a[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* Parent items with dropdowns don't get the underline — the sub-arrow already
+ * signals interactivity, and the bar bleeds into the dropdown otherwise. */
+.l-header .block-system-main-menu .menu-dropdown > li.has-children > a::after {
+  display: none;
+}
+
+/* Sub-menu items — semi-bold to match top-level weight. */
+.l-header .block-system-main-menu .menu-dropdown ul a {
+  font-weight: 600;
+}
+
 /* Menu stays on the right */
 .header-menu {
   flex-shrink: 0;
