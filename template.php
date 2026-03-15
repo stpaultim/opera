@@ -101,6 +101,39 @@ function _opera_color_is_dark($hex) {
 }
 
 /**
+ * Implements hook_preprocess_header().
+ *
+ * When the site architect has chosen a Phosphor icon as the logo, clears
+ * $logo so the template doesn't show the image, and sets $logo_icon and
+ * $logo_icon_size for the icon branch of the template.
+ */
+function opera_preprocess_header(&$variables) {
+  $size_map = array(
+    'small'  => 48,
+    'medium' => 72,
+    'large'  => 96,
+    'xlarge' => 128,
+  );
+  $logo_size             = theme_get_setting('logo_size', 'opera') ?: 'medium';
+  $variables['logo_icon_size'] = isset($size_map[$logo_size]) ? $size_map[$logo_size] : 72;
+  $variables['logo_icon']      = '';
+
+  $logo_type = theme_get_setting('logo_type', 'opera') ?: 'image';
+  if ($logo_type !== 'icon') {
+    return;
+  }
+
+  $icon_name = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
+  if (empty($icon_name)) {
+    return;
+  }
+
+  // Suppress the image logo so the template shows the icon instead.
+  $variables['logo']      = '';
+  $variables['logo_icon'] = $icon_name;
+}
+
+/**
  * Prepares variables for layout templates.
  *
  * @see layout.tpl.php

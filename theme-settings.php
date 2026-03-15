@@ -7,6 +7,9 @@
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
 function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id = NULL) {
 
   $design_tokens_active = module_exists('design_tokens');
@@ -40,6 +43,63 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     '#collapsible' => TRUE,
     '#collapsed'   => FALSE,
     '#weight'      => 5,
+  );
+  $form['header']['logo_type'] = array(
+    '#type'          => 'radios',
+    '#title'         => t('Logo type'),
+    '#options'       => array(
+      'image' => t('Image — upload via Administration > Configuration > System > Site information'),
+      'icon'  => t('Phosphor icon'),
+    ),
+    '#default_value' => theme_get_setting('logo_type', 'opera') ?: 'image',
+  );
+  if (module_exists('icon_browser')) {
+    $icon_browse_link = t('<a href="@url" target="_blank">Browse all available icons</a>.', array(
+      '@url' => url('admin/config/media/icons/browse'),
+    ));
+  }
+  else {
+    $icon_browse_link = t('Install the <a href="@url" target="_blank">Icon Browser</a> module to visually browse all available icons.', array(
+      '@url' => 'https://backdropcms.org/project/icon_browser',
+    ));
+  }
+
+  $form['header']['logo_icon_name'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Icon name'),
+    '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+    '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
+      '%house'     => 'house',
+      '%star'      => 'star',
+      '%buildings' => 'buildings',
+      '!browse'    => $icon_browse_link,
+    )),
+    '#attributes'    => array('class' => array('opera-logo-icon-field')),
+    '#states'        => array(
+      'visible' => array(
+        ':input[name="logo_type"]' => array('value' => 'icon'),
+      ),
+    ),
+  );
+
+  $icon_name    = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
+  $preview_html = $icon_name ? icon($icon_name, array('attributes' => array('width' => 48, 'height' => 48))) : '';
+  $form['header']['icon_preview'] = array(
+    '#type'       => 'container',
+    '#attributes' => array('id' => 'opera-icon-preview-wrapper'),
+    '#states'     => array(
+      'visible' => array(
+        ':input[name="logo_type"]' => array('value' => 'icon'),
+      ),
+    ),
+    'icon'        => array(
+      '#markup' => $preview_html ?: '<em>' . t('Enter a valid icon name to see a preview.') . '</em>',
+    ),
+    '#attached'   => array(
+      'js' => array(
+        backdrop_get_path('theme', 'opera') . '/js/admin-header.js',
+      ),
+    ),
   );
   $form['header']['logo_size'] = array(
     '#type'          => 'select',

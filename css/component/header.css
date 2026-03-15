@@ -13,73 +13,14 @@
   transition: background-color 0.25s ease-out;
 }
 
-.header-identity-wrapper:after {
-  /* Clearfix */
-  content: '';
-  display: table;
-  clear: both;
-}
-.header-identity-wrapper strong {
-  font-weight: inherit;
-  margin: 33px 0;
-}
-
-@media (min-width: 48em) {
-  .header-identity-wrapper {
-    display: block;
-    float: left;
-  }
-
-  [dir="rtl"] .header-identity-wrapper {
-    float: right;
-  }
-}
-
 .header-site-name-wrapper {
-  margin: 0;
-  padding: 0;
   overflow-wrap: break-word;
-}
-
-@media (min-width: 34em) {
-  .header-site-name-wrapper {
-    float: left;
-  }
-
-  [dir="rtl"] .header-site-name-wrapper {
-    float: right;
-  }
-}
-
-.header-logo-wrapper {
-  display: block;
-  float: left;
-}
-
-[dir="rtl"] .header-logo-wrapper {
-  float: right;
 }
 
 /* Makes sure images that are tall logos don't pop out of container */
 .header-logo-tall img {
   width: auto;
   height: 100%;
-}
-
-.header-site-name-link {
-  display: block;
-  margin: 0;
-}
-
-.header-site-slogan {
-  margin: 0;
-}
-
-.l-header .block-system-header .block-content:after {
-  /* Clearfix header block */
-  content: "";
-  display: table;
-  clear: both;
 }
 
 /**
@@ -227,6 +168,9 @@
 
 /* Identity area (logo + site name) grows to fill available space */
 .header-identity-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
   min-width: 0;
 }
@@ -260,6 +204,20 @@
 .header-identity-wrapper strong {
   font-size: 1.875rem; /* 30px */
   font-weight: bold;
+}
+
+/* Phosphor icon used as logo — inherits header text color via currentColor. */
+.header-logo-icon {
+  color: var(--color-header-text, #1a1a1a);
+}
+
+/* Site slogan — small, muted, tracked caps below the site name/logo. */
+.header-site-slogan {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-top: 0.2rem;
 }
 
 /* Menu stays on the right */
