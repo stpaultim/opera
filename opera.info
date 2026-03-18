@@ -2,7 +2,7 @@ type = theme
 name = Opera
 description = Opera theme
 backdrop = 1.x
-version = 1.x
+version = 2.x
 
 ; Default Google Fonts (Design Tokens Font module overrides this when active)
 stylesheets[all][] = https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap
@@ -56,4 +56,4 @@ scripts[] = js/scripts.js
 utility_css[recipes][] = 'info-block'
 
 settings[use_google_fonts] = 1
-settings[block_color_sequence] = 3
+settings[front_page_block_count] = 3

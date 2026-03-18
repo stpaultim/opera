@@ -91,12 +91,12 @@
   }
 
   /**
-   * Sends computed colors for all 8 block color sets.
+   * Sends computed colors for all 9 block color slots.
    *
    * Called on iframe load and when any global text/link token changes.
    */
   function updateAllBlockComputedColors() {
-    for (var i = 1; i <= 8; i++) {
+    for (var i = 1; i <= 9; i++) {
       var bg = getTokenFieldVal('color-block-' + i, '');
       if (bg) {
         updateBlockComputedColors(i, bg);

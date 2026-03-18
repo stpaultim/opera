@@ -30,7 +30,7 @@ Opera is a good fit if you want to:
 ### Stacked full-width blocks
 The signature Opera layout uses Backdrop's Boxton layout on the front page. Blocks in the
 content region extend the full width of the screen with their own background colors. The
-first and last blocks are always white; middle blocks cycle through your chosen color sets.
+first block is always white; subsequent blocks cycle through your chosen color sets.
 
 ### Two-bar split header
 Opera uses a two-bar header: a **logo bar** above (white by default) and a **nav bar** below
@@ -146,8 +146,8 @@ container constraint as usual.
 ## Layout details
 
 ### Front page (Boxton layout)
-- First and last content blocks: always white background, standard link colors
-- Middle content blocks: cycle through your configured color sets (2–8 sets, configurable
+- First content block: always white background, standard link colors
+- Subsequent content blocks: cycle through your configured color sets (2–8 sets, configurable
   in theme settings)
 - Color sequencing is controlled by the **Color sequence length** setting
 

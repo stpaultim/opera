@@ -1,29 +1,33 @@
 /*
- * Front page block color sequencing.
+ * Front page block colors.
  *
- * The first and last blocks in the content region are always white.
- * Middle blocks cycle through a color sequence. The sequence length is
- * controlled by the block_color_sequence theme setting, which adds a
- * block-sequence-N class to the layout element.
+ * Applies to the Boxton layout on the front page only. Each block position
+ * (1–9) has its own color slot. Block 1 defaults to white but is configurable
+ * via Design Tokens. The number of color slots shown in Design Tokens matches
+ * the "How many blocks?" setting in the theme settings.
  *
- * Link colors: opera_css_alter() in template.php calculates the luminance
- * of each block's background color and injects --color-block-N-link as
- * either var(--link-color) or var(--link-color-inverted) automatically.
- * Site architects only need to set block background colors — link colors
- * follow. The inverted fallback below handles the case before PHP sets the
- * computed variable.
- *
- * Supported sequence lengths: 2-8.
+ * Link colors: opera_css_alter() in template.php calculates the luminance of
+ * each block's background color and injects --color-block-N-link as either
+ * var(--link-color) or var(--link-color-inverted) automatically. Site
+ * architects only need to set block background colors — link colors follow.
  */
 
-/* First block: always white. */
+/* Remove the default l-content bottom padding so the last block butts up against the footer. */
+.layout--boxton.layout-front .l-content {
+  padding-bottom: 0;
+}
+
+/* =====================================================================
+   Block 1 — white by default, configurable via Design Tokens.
+   ===================================================================== */
+
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) {
-  background-color: white;
-  color: black;
+  background-color: var(--color-block-1, white);
+  color: var(--color-block-1-text, #1a1a1a);
 }
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) a,
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) a:link {
-  color: var(--link-color, #6e0e0a);
+  color: var(--color-block-1-link, var(--link-color, #6e0e0a));
 }
 .layout--boxton.layout-front .l-content div.block:nth-of-type(1) a:visited {
   color: var(--link-color-visited, #551a8b);
@@ -33,447 +37,103 @@
   color: var(--link-color-hover, #580b08);
 }
 
-/* Last block: always white. */
-.layout--boxton.layout-front .l-content div.block:last-of-type {
-  background-color: white;
-  color: black;
-}
-.layout--boxton.layout-front .l-content div.block:last-of-type a,
-.layout--boxton.layout-front .l-content div.block:last-of-type a:link {
-  color: var(--link-color, #6e0e0a);
-}
-.layout--boxton.layout-front .l-content div.block:last-of-type a:visited {
-  color: var(--link-color-visited, #551a8b);
-}
-.layout--boxton.layout-front .l-content div.block:last-of-type a:hover,
-.layout--boxton.layout-front .l-content div.block:last-of-type a:focus {
-  color: var(--link-color-hover, #580b08);
-}
-
 /* =====================================================================
-   Block link color helper.
-
-   Each sequence section sets background + text on the block element,
-   then sets link/visited/hover colors using the computed --color-block-N-link
-   variable. Fallback chain: computed var → inverted color → hardcoded.
+   Blocks 2–9 — each has its own color slot.
+   Link color fallback is inverted (light) since defaults are dark.
    ===================================================================== */
 
-/* =====================================================================
-   Sequence of 2
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a:link,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) {
   background-color: var(--color-block-2);
   color: var(--color-block-2-text);
 }
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a:link,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-2 .l-content div.block:nth-of-type(2n+3) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(2) a:focus {
   color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 3 (default)
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a:link,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a:link,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) {
   background-color: var(--color-block-3);
   color: var(--color-block-3-text);
 }
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a:link,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-3 .l-content div.block:nth-of-type(3n+4) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(3) a:focus {
   color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 4
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a:link,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a:link,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) {
-  background-color: var(--color-block-3);
-  color: var(--color-block-3-text);
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a:link,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+4) a:focus {
-  color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) {
   background-color: var(--color-block-4);
   color: var(--color-block-4-text);
 }
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a:link,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a:visited,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a:hover,
-.layout--boxton.layout-front.block-sequence-4 .l-content div.block:nth-of-type(4n+5) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(4) a:focus {
   color: var(--color-block-4-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 5
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a:link,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a:link,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) {
-  background-color: var(--color-block-3);
-  color: var(--color-block-3-text);
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a:link,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+4) a:focus {
-  color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) {
-  background-color: var(--color-block-4);
-  color: var(--color-block-4-text);
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a:link,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a:visited,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a:hover,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+5) a:focus {
-  color: var(--color-block-4-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) {
   background-color: var(--color-block-5);
   color: var(--color-block-5-text);
 }
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a:link,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a:visited,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a:hover,
-.layout--boxton.layout-front.block-sequence-5 .l-content div.block:nth-of-type(5n+6) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(5) a:focus {
   color: var(--color-block-5-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 6
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) {
-  background-color: var(--color-block-3);
-  color: var(--color-block-3-text);
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+4) a:focus {
-  color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) {
-  background-color: var(--color-block-4);
-  color: var(--color-block-4-text);
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+5) a:focus {
-  color: var(--color-block-4-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) {
-  background-color: var(--color-block-5);
-  color: var(--color-block-5-text);
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+6) a:focus {
-  color: var(--color-block-5-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) {
   background-color: var(--color-block-6);
   color: var(--color-block-6-text);
 }
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a:link,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a:visited,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a:hover,
-.layout--boxton.layout-front.block-sequence-6 .l-content div.block:nth-of-type(6n+7) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(6) a:focus {
   color: var(--color-block-6-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 7
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) {
-  background-color: var(--color-block-3);
-  color: var(--color-block-3-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+4) a:focus {
-  color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) {
-  background-color: var(--color-block-4);
-  color: var(--color-block-4-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+5) a:focus {
-  color: var(--color-block-4-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) {
-  background-color: var(--color-block-5);
-  color: var(--color-block-5-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+6) a:focus {
-  color: var(--color-block-5-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) {
-  background-color: var(--color-block-6);
-  color: var(--color-block-6-text);
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+7) a:focus {
-  color: var(--color-block-6-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) {
   background-color: var(--color-block-7);
   color: var(--color-block-7-text);
 }
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a:link,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a:visited,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a:hover,
-.layout--boxton.layout-front.block-sequence-7 .l-content div.block:nth-of-type(7n+8) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(7) a:focus {
   color: var(--color-block-7-link, var(--link-color-inverted, #f0e6b8));
 }
 
-/* =====================================================================
-   Sequence of 8
-   ===================================================================== */
-
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) {
-  background-color: var(--color-block-1);
-  color: var(--color-block-1-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+2) a:focus {
-  color: var(--color-block-1-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) {
-  background-color: var(--color-block-2);
-  color: var(--color-block-2-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+3) a:focus {
-  color: var(--color-block-2-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) {
-  background-color: var(--color-block-3);
-  color: var(--color-block-3-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+4) a:focus {
-  color: var(--color-block-3-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) {
-  background-color: var(--color-block-4);
-  color: var(--color-block-4-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+5) a:focus {
-  color: var(--color-block-4-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) {
-  background-color: var(--color-block-5);
-  color: var(--color-block-5-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+6) a:focus {
-  color: var(--color-block-5-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) {
-  background-color: var(--color-block-6);
-  color: var(--color-block-6-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+7) a:focus {
-  color: var(--color-block-6-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) {
-  background-color: var(--color-block-7);
-  color: var(--color-block-7-text);
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+8) a:focus {
-  color: var(--color-block-7-link, var(--link-color-inverted, #f0e6b8));
-}
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) {
   background-color: var(--color-block-8);
   color: var(--color-block-8-text);
 }
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a:link,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a:visited,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a:hover,
-.layout--boxton.layout-front.block-sequence-8 .l-content div.block:nth-of-type(8n+9) a:focus {
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(8) a:focus {
   color: var(--color-block-8-link, var(--link-color-inverted, #f0e6b8));
+}
+
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) {
+  background-color: var(--color-block-9);
+  color: var(--color-block-9-text);
+}
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) a,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) a:link,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) a:visited,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) a:hover,
+.layout--boxton.layout-front .l-content div.block:nth-of-type(9) a:focus {
+  color: var(--color-block-9-link, var(--link-color-inverted, #f0e6b8));
 }

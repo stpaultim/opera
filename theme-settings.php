@@ -33,9 +33,25 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     );
   }
 
-  $front_page_description = $design_tokens_active
-    ? t('The first and last blocks are always white. Middle blocks cycle through the color sequence defined in <a href="!url">Design Tokens</a>.', array('!url' => url('admin/appearance/tokens/opera')))
-    : t('The first and last blocks are always white. Middle blocks cycle through the numbered color sets. Install the Design Tokens module to customize these colors.');
+  // Query the front page layout to count blocks in the content region.
+  // Find the layout whose path matches the configured site front page.
+  $front_layout_block_count = NULL;
+  $site_frontpage = ltrim(config_get('system.core', 'site_frontpage') ?: '', '/');
+  foreach (config_get_names_with_prefix('layout.layout.') as $config_name) {
+    $layout_config = config($config_name);
+    $layout_path = ltrim((string) $layout_config->get('path'), '/');
+    if ($layout_path === $site_frontpage) {
+      $positions = $layout_config->get('positions');
+      $front_layout_block_count = isset($positions['content'])
+        ? count($positions['content'])
+        : 0;
+      break;
+    }
+  }
+
+  $declared_block_count = (int) (theme_get_setting('front_page_block_count', 'opera') ?: 3);
+
+  $front_page_description = t('Applies to the front page when using the Boxton layout. Block 1 is white by default but can be changed via Design Tokens.');
 
   $form['header'] = array(
     '#type'        => 'fieldset',
@@ -53,34 +69,49 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     ),
     '#default_value' => theme_get_setting('logo_type', 'opera') ?: 'image',
   );
-  if (module_exists('icon_browser')) {
-    $icon_browse_link = t('<a href="@url" target="_blank">Browse all available icons</a>.', array(
-      '@url' => url('admin/config/media/icons/browse'),
-    ));
+  if (module_exists('icon_picker')) {
+    $logo_icon_element = array(
+      '#type'          => 'icon_picker',
+      '#title'         => t('Icon name'),
+      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#attributes'    => array('class' => array('opera-logo-icon-field')),
+      '#states'        => array(
+        'visible' => array(
+          ':input[name="logo_type"]' => array('value' => 'icon'),
+        ),
+      ),
+    );
   }
   else {
-    $icon_browse_link = t('Install the <a href="@url" target="_blank">Icon Browser</a> module to visually browse all available icons.', array(
-      '@url' => 'https://backdropcms.org/project/icon_browser',
-    ));
-  }
-
-  $form['header']['logo_icon_name'] = array(
-    '#type'          => 'textfield',
-    '#title'         => t('Icon name'),
-    '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
-    '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
-      '%house'     => 'house',
-      '%star'      => 'star',
-      '%buildings' => 'buildings',
-      '!browse'    => $icon_browse_link,
-    )),
-    '#attributes'    => array('class' => array('opera-logo-icon-field')),
-    '#states'        => array(
-      'visible' => array(
-        ':input[name="logo_type"]' => array('value' => 'icon'),
+    if (module_exists('icon_browser')) {
+      $icon_browse_link = t('<a href="@url" target="_blank">Browse all available icons</a>.', array(
+        '@url' => url('admin/config/media/icons/browse'),
+      ));
+    }
+    else {
+      $icon_browse_link = t('Install the <a href="@url" target="_blank">Icon Browser</a> module to visually browse all available icons.', array(
+        '@url' => 'https://backdropcms.org/project/icon_browser',
+      ));
+    }
+    $logo_icon_element = array(
+      '#type'          => 'textfield',
+      '#title'         => t('Icon name'),
+      '#default_value' => theme_get_setting('logo_icon_name', 'opera') ?: '',
+      '#description'   => t('Enter a Phosphor icon name such as %house, %star, or %buildings. !browse', array(
+        '%house'     => 'house',
+        '%star'      => 'star',
+        '%buildings' => 'buildings',
+        '!browse'    => $icon_browse_link,
+      )),
+      '#attributes'    => array('class' => array('opera-logo-icon-field')),
+      '#states'        => array(
+        'visible' => array(
+          ':input[name="logo_type"]' => array('value' => 'icon'),
+        ),
       ),
-    ),
-  );
+    );
+  }
+  $form['header']['logo_icon_name'] = $logo_icon_element;
 
   $icon_name    = strtolower(trim(theme_get_setting('logo_icon_name', 'opera') ?: ''));
   $preview_html = $icon_name ? icon($icon_name, array('attributes' => array('width' => 48, 'height' => 48))) : '';
@@ -121,10 +152,34 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
     '#collapsed' => FALSE,
     '#description' => $front_page_description,
   );
-  $form['front_page']['block_color_sequence'] = array(
-    '#type' => 'select',
-    '#title' => t('Color sequence length'),
+
+  // Show the current block count from the layout config, with a warning if
+  // the declared count is lower than the actual number of blocks.
+  if ($front_layout_block_count !== NULL) {
+    if ($front_layout_block_count > $declared_block_count) {
+      $count_markup = '<div class="messages warning"><p>' . t(
+        'Your front page layout currently has <strong>!actual block(s)</strong> in the content region, but you have only configured <strong>!declared color slot(s)</strong>. Blocks beyond !declared will have no background color. Increase the number below or remove blocks from your layout.',
+        array('!actual' => $front_layout_block_count, '!declared' => $declared_block_count)
+      ) . '</p></div>';
+    }
+    else {
+      $count_markup = '<p>' . t(
+        'Your front page layout currently has <strong>!count block(s)</strong> in the content region.',
+        array('!count' => $front_layout_block_count)
+      ) . '</p>';
+    }
+    $form['front_page']['block_count_info'] = array(
+      '#type'   => 'markup',
+      '#markup' => $count_markup,
+      '#weight' => -1,
+    );
+  }
+
+  $form['front_page']['front_page_block_count'] = array(
+    '#type'  => 'select',
+    '#title' => t('How many blocks do you expect in the Content region of your front page?'),
     '#options' => array(
+      '1' => t('1'),
       '2' => t('2'),
       '3' => t('3'),
       '4' => t('4'),
@@ -132,12 +187,13 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
       '6' => t('6'),
       '7' => t('7'),
       '8' => t('8'),
+      '9' => t('9'),
     ),
-    '#default_value' => (string) (theme_get_setting('block_color_sequence', 'opera') ?: 3),
-    '#description' => t('Number of distinct block colors before the sequence repeats.'),
+    '#default_value' => (string) $declared_block_count,
+    '#description'   => t('Controls how many color slots appear in Design Tokens, extra slots are OK. Blocks beyond this number will have no background color. For more than 9 blocks, use the <a href="!url" target="_blank" rel="noopener">Configurable Block Styles</a> module.', array('!url' => 'https://backdropcms.org/project/configurable_block_style')),
   );
 
-  if ($design_tokens_active) {
+  if (module_exists('design_tokens_font')) {
     $form['fonts'] = array(
       '#type' => 'markup',
       '#markup' => '<p>' . t('Fonts are managed through <a href="!url">Design Tokens</a>. Google Fonts are loaded automatically based on your selections.', array('!url' => url('admin/appearance/tokens/opera'))) . '</p>',
@@ -153,6 +209,12 @@ function opera_form_system_theme_settings_alter(&$form, &$form_state, $form_id =
   $has_project_browser = backdrop_valid_path('admin/modules/install');
 
   $modules = array(
+    array(
+      'name'        => 'Design Tokens',
+      'machine'     => 'design_tokens',
+      'project_url' => 'https://backdropcms.org/project/design_tokens',
+      'description' => t('Unlocks full control over Opera\'s colors, fonts, and preset schemes. Replaces Opera\'s default stylesheet with many configurable options. Recommended for any site where branding matters.'),
+    ),
     array(
       'name'        => 'Configurable Block Styles',
       'machine'     => 'configurable_block_style',

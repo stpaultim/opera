@@ -29,7 +29,7 @@ function opera_css_alter(&$css) {
   if (function_exists('design_tokens_get_values')) {
     $values = design_tokens_get_values('opera');
 
-    for ($i = 1; $i <= 8; $i++) {
+    for ($i = 1; $i <= 9; $i++) {
       $bg_token = 'color-block-' . $i;
       if (!empty($values[$bg_token])) {
         $is_dark = _opera_color_is_dark($values[$bg_token]);
@@ -147,13 +147,8 @@ function opera_preprocess_layout(&$variables) {
     $variables['theme_hook_suggestions'][] = $original . '__front';
     $variables['theme_hook_suggestion'] = $original . '__front';
 
-    // Add the block color sequence class so front.css knows which
-    // nth-of-type rules to apply.
-    $sequence = (int) theme_get_setting('block_color_sequence', 'opera');
-    if ($sequence < 2 || $sequence > 8) {
-      $sequence = 3;
-    }
-    $variables['classes'][] = 'block-sequence-' . $sequence;
+    // No sequence class needed — front.css uses explicit nth-of-type rules
+    // for each block position (1–9), so no dynamic class is required.
   }
 }
 
@@ -161,20 +156,20 @@ function opera_preprocess_layout(&$variables) {
  * Implements hook_design_tokens_info_alter().
  *
  * Hides block color groups in the Design Tokens UI that exceed the
- * current block_color_sequence setting, so admins only see the slots
- * that are actually in use.
+ * declared front_page_block_count, so admins only see the slots that
+ * correspond to their actual block count.
  */
 function opera_design_tokens_info_alter(array &$info, $theme_name) {
   if ($theme_name !== 'opera') {
     return;
   }
 
-  $sequence = (int) theme_get_setting('block_color_sequence', 'opera');
-  if ($sequence < 2 || $sequence > 8) {
-    $sequence = 3;
+  $count = (int) theme_get_setting('front_page_block_count', 'opera');
+  if ($count < 1 || $count > 9) {
+    $count = 3;
   }
 
-  for ($i = $sequence + 1; $i <= 8; $i++) {
+  for ($i = $count + 1; $i <= 9; $i++) {
     $group_key = 'block_' . $i;
     unset($info['groups'][$group_key]);
     foreach ($info['tokens'] as $token_name => $token) {

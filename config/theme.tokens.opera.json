@@ -24,17 +24,18 @@
         "color-primary-link": "#b2bc21",
         "color-secondary": "#b2bc21",
         "color-hero": "#f0f0c9",
-        "color-hero-text": "#002000",
+        "color-hero-text": "#ffffff",
         "color-hero-link": "#b2bc22",
         "color-card-bg": "#f8f3f3",
         "card-border-radius": "0.25rem",
-        "color-block-1": "#f2bb05",
-        "color-block-2": "#124e78",
-        "color-block-3": "#c24608",
-        "color-block-4": "#4a9153",
-        "color-block-5": "#7b2d8b",
-        "color-block-6": "#1a6b6b",
-        "color-block-7": "#8b6d14",
-        "color-block-8": "#5c1a1a"
+        "color-block-1": "#ffffff",
+        "color-block-2": "#f2bb05",
+        "color-block-3": "#124e78",
+        "color-block-4": "#c24608",
+        "color-block-5": "#4a9153",
+        "color-block-6": "#7b2d8b",
+        "color-block-7": "#1a6b6b",
+        "color-block-8": "#8b6d14",
+        "color-block-9": "#5c1a1a"
     }
 }
