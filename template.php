@@ -197,6 +197,42 @@ function opera_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_block().
+ *
+ * Rebuilds the Book navigation block's content using the full book tree.
+ * Backdrop's default book "book pages" mode only expands the branch under
+ * the active page, which prevents users from browsing siblings' children
+ * without navigating away. By rendering the full tree here, the
+ * book-toggle.js behavior can collapse/expand any branch client-side while
+ * still falling back to a fully visible TOC for no-JS visitors.
+ */
+function opera_preprocess_block(&$variables) {
+  if (empty($variables['block'])) {
+    return;
+  }
+  $block = $variables['block'];
+  if ($block->module !== 'book' || $block->delta !== 'navigation') {
+    return;
+  }
+  $node = menu_get_object();
+  if (!$node || empty($node->book['menu_name'])) {
+    return;
+  }
+  $tree = menu_tree_all_data($node->book['menu_name']);
+  $variables['content'] = menu_tree_output($tree);
+
+  // Attach the toggle behavior + a marker class on the block-content wrapper
+  // so the CSS can scope its collapse rules to JS-enhanced markup only.
+  $variables['classes'][] = 'book-navigation--collapsible';
+  if (is_array($variables['content'])) {
+    $variables['content']['#attached']['js'][] = backdrop_get_path('theme', 'opera') . '/js/book-toggle.js';
+  }
+  else {
+    backdrop_add_js(backdrop_get_path('theme', 'opera') . '/js/book-toggle.js');
+  }
+}
+
+/**
  * Returns HTML for a breadcrumb trail.
  *
  * @param $variables

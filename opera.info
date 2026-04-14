@@ -4,9 +4,6 @@ description = Opera theme
 backdrop = 1.x
 version = 2.x
 
-; Default Google Fonts (Design Tokens Font module overrides this when active)
-stylesheets[all][] = https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap
-
 ; Add theme CSS files
 stylesheets[all][] = css/base.css
 stylesheets[all][] = css/typography.css
@@ -49,7 +46,7 @@ stylesheets[all][] = css/opera-derived-variables.css
 
 
 ; Add theme JS files
-scripts[] = js/scripts.js
+scripts[] = js/script.js
 
 ; Configuration specifically for Utility CSS module. Classes added to this list
 ; will be available as autocomplete in the block UI where users are allowed to add classes.
