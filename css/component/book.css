@@ -76,7 +76,7 @@
   max-width: 100%;
   padding: 0.2em 0.9em;
   border: 1px solid var(--button-bg, #6e0e0a);
-  border-radius: var(--button-border-radius, 0);
+  border-radius: var(--button-border-radius, 0.25rem);
   font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.4;

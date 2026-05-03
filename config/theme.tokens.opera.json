@@ -7,7 +7,7 @@
         "button-bg": "#6e0e0a",
         "button-text": "#ffffff",
         "button-bg-hover": "#580b08",
-        "button-border-radius": "0",
+        "button-border-radius": "0.25rem",
         "button-text-transform": "uppercase",
         "link-color": "#6e0e0a",
         "link-color-hover": "#580b08",
