@@ -183,29 +183,71 @@ div.messages.info:before {
 
 /* =====================================================================
    Buttons
+
+   Hierarchy (Opera 2.x):
+     .button-primary  → filled brand color, bold, lifted: the page's "complete" action.
+     .form-submit / .button (default) → outlined in brand color: a button, but not THE button.
+     .button-secondary → outlined neutral grey: auxiliary action.
+     .button-danger → outlined red, fills on hover: destructive action.
+
+   Forms should mark exactly one button per page as #button_type => 'primary'.
+   Forms with a single submit and no explicit primary mark render as the
+   outlined default — still clearly a button, but not styled as if it
+   were competing with a primary action that doesn't exist.
    ===================================================================== */
 
+/* Default submit / .button — outlined in brand color, regular weight. */
 input.form-submit,
 button.form-submit,
-.button,
+.button {
+  color: var(--color-primary, #6e0e0a);
+  background: transparent;
+  border: 2px solid var(--color-primary, #6e0e0a);
+  border-radius: var(--button-border-radius, 0.25rem);
+  text-transform: var(--button-text-transform, uppercase);
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Primary submit — filled brand color, bolder text, brand-tinted lift. */
 input.button-primary,
-button.button-primary,
+button.button-primary {
+  color: var(--button-text, #ffffff);
+  background: var(--button-bg, #6e0e0a);
+  border: 2px solid var(--button-bg, #6e0e0a);
+  border-radius: var(--button-border-radius, 0.25rem);
+  text-transform: var(--button-text-transform, uppercase);
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--color-primary, #6e0e0a) 35%, transparent);
+}
+
+/* jQuery UI button widgets — keep the filled brand styling they had
+   before; they're invoked from autocomplete/dropdown contexts where
+   the outlined default doesn't fit. */
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
   color: var(--button-text, #ffffff);
   background: var(--button-bg, #6e0e0a);
   border: none;
-  border-radius: var(--button-border-radius, 0);
+  border-radius: var(--button-border-radius, 0.25rem);
   text-transform: var(--button-text-transform, uppercase);
   letter-spacing: 0.025em;
   line-height: 1.4;
   text-align: center;
 }
 
-/* Prevent visited link color bleeding into buttons */
+/* Prevent visited link color bleeding into anchor-styled buttons */
 .button:link,
-.button:visited,
+.button:visited {
+  color: var(--color-primary, #6e0e0a);
+  text-decoration: none;
+}
 input.button-primary:link,
 input.button-primary:visited,
 button.button-primary:link,
@@ -214,20 +256,27 @@ button.button-primary:visited {
   text-decoration: none;
 }
 
+/* Hover / focus — outlined fills in with brand; primary deepens + grows shadow. */
 input.form-submit:hover,
 input.form-submit:focus,
 button.form-submit:hover,
 button.form-submit:focus,
 .button:hover,
-.button:focus,
+.button:focus {
+  color: var(--button-text, #ffffff);
+  background: var(--color-primary, #6e0e0a);
+}
 input.button-primary:hover,
 input.button-primary:focus,
 button.button-primary:hover,
 button.button-primary:focus {
   color: var(--button-text, #ffffff);
   background: var(--button-bg-hover, #580b08);
+  border-color: var(--button-bg-hover, #580b08);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--color-primary, #6e0e0a) 50%, transparent);
 }
 
+/* Active — slight darken across the board */
 input.form-submit:active,
 button.form-submit:active,
 .button:active,
@@ -235,6 +284,7 @@ input.button-primary:active,
 button.button-primary:active {
   color: var(--button-text, #ffffff);
   background: var(--button-bg-hover, #580b08);
+  border-color: var(--button-bg-hover, #580b08);
   filter: brightness(0.9);
 }
 

@@ -153,22 +153,31 @@ ul.tips {
 
 input.form-submit,
 button.form-submit,
+input.button-primary,
+button.button-primary,
 .button {
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.025em;
   line-height: 1.4;
-  border: 0;
+  box-sizing: border-box;
+  /* Border color is set per-variant in skin.css (outlined default vs filled
+     primary). Keep box dimensions consistent across variants by reserving
+     the border slot here via box-sizing. */
   padding: 0.75em 1.5625em;
   margin-bottom: 1em;
   margin-right: 1em; /* LTR */
   -webkit-transition:
-    background-color 0.6s ease 0s,
-    color 0.6s ease 0s;
+    background-color 0.3s ease 0s,
+    color 0.3s ease 0s,
+    border-color 0.3s ease 0s,
+    box-shadow 0.3s ease 0s;
   transition:
-    background-color 0.6s ease 0s,
-    color 0.6s ease 0s;
+    background-color 0.3s ease 0s,
+    color 0.3s ease 0s,
+    border-color 0.3s ease 0s,
+    box-shadow 0.3s ease 0s;
 }
 
 [dir="rtl"] input.form-submit,
@@ -259,7 +268,7 @@ input.form-file::file-selector-button {
   background-color: var(--button-bg, #6e0e0a);
   color: var(--button-text, #fff);
   border: none;
-  border-radius: var(--button-border-radius, 0);
+  border-radius: var(--button-border-radius, 0.25rem);
   font-size: 0.875em;
   font-weight: 600;
   text-transform: uppercase;

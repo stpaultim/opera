@@ -146,7 +146,7 @@ $info = array(
     'button-border-radius' => array(
       'label'   => t('Button corner radius'),
       'type'    => 'text',
-      'default' => '0',
+      'default' => '0.25rem',
       'group'   => 'buttons',
     ),
     'button-text-transform' => array(
