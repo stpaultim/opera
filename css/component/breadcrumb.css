@@ -53,9 +53,9 @@
   text-decoration: underline;
 }
 
-/* Last item — current page context, visually quieter */
-.breadcrumb li:last-child a,
-.breadcrumb li:last-child span {
+/* A last item that is plain text (the current page, where a module adds
+   it) is visually quieter. Backdrop's breadcrumb usually ends with the
+   parent page, so a link in the last place stays a working link. */
+.breadcrumb li:last-child > span {
   color: #666;
-  pointer-events: none;
 }
