@@ -140,11 +140,19 @@ $info = array(
     'button-border-radius' => array(
       'label'   => t('Button corner radius'),
       'type'    => 'text',
+      'description' => t('How round the corners of buttons are. Use a length such as 0 (square), 0.25rem (slightly rounded), 1rem (round) or 999px (pill-shaped).'),
       'group'   => 'buttons',
     ),
     'button-text-transform' => array(
       'label'   => t('Button text transform'),
       'type'    => 'text',
+      'description' => t('How the words on buttons are capitalized.'),
+      'options' => array(
+        'none'       => t('None: as typed'),
+        'uppercase'  => t('UPPERCASE'),
+        'lowercase'  => t('lowercase'),
+        'capitalize' => t('Capitalize Each Word'),
+      ),
       'group'   => 'buttons',
     ),
 
@@ -258,6 +266,7 @@ $info = array(
     'card-border-radius' => array(
       'label'   => t('Corner radius'),
       'type'    => 'text',
+      'description' => t('How round the corners of cards and teasers are. Use a length such as 0 (square), 0.25rem (slightly rounded) or 1rem (round).'),
       'group'   => 'cards',
     ),
 
