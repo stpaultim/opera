@@ -71,7 +71,7 @@ manage all visual configuration. From a single admin page you can change:
 - **Links** — color, hover color, visited color, and underline behavior
 - **Typography** — heading and body font families, with Google Fonts support built in
 - **Hero Blocks** — colors for hero blocks without a custom image
-- **Cards & Teasers** — card background color (automatic: a tint of the primary color until you choose one), card text color and corner radius
+- **Cards, Tables & Panels** — one background color for cards, teasers, table header rows and form panels (automatic: a tint of the primary color until you choose one), plus card text color and corner radius for cards and teasers
 - **Block Color Sets** — up to 8 background colors for cycling front-page blocks. Text and
   link colors are calculated automatically based on whether the background is light or dark.
 

@@ -74,7 +74,7 @@ CSS `color-mix()` and should be used instead of hardcoded greys (`#f5f5f5`, `#de
 
 | Token | Mix | Used for |
 |---|---|---|
-| `--color-card-bg` | 5% primary + white | Card backgrounds, table headers, form surfaces |
+| `--color-card-bg` | 5% primary + white | Card backgrounds, table headers, form surfaces. In the Design Tokens form it is "Card and table header background" in the "Cards, Tables & Panels" section: one value for all of them, with no separate table header token yet |
 | `--color-surface-mid` | 12% primary + white | Borders, hover states, sidebar backgrounds |
 
 `--color-surface-mid` lives in `opera-derived-variables.css` (never removed by Design

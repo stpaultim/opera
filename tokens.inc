@@ -71,8 +71,8 @@ $info = array(
       'description' => t('Controls link colors and underline behavior for body content, plus the default and inverted text colors used automatically on colored blocks based on background brightness.'),
     ),
     'cards' => array(
-      'label' => t('Cards & Teasers'),
-      'description' => t('Background color, text color and corner radius for content cards, post teasers, and similar framed content.'),
+      'label' => t('Cards, Tables & Panels'),
+      'description' => t('Background color for content cards, post teasers, table header rows and form panels. The text color and corner radius below apply to cards and teasers only.'),
     ),
     'typography' => array(
       'label' => t('Typography'),
@@ -239,11 +239,11 @@ $info = array(
       'group'   => 'hero',
     ),
 
-    // Cards & Teasers
+    // Cards, Tables & Panels
     // Automatic by default: calculated from the primary color in
     // opera-variables.css, until someone chooses a color.
     'color-card-bg' => array(
-      'label'        => t('Card background'),
+      'label'        => t('Card and table header background'),
       'type'         => 'color',
       'group'        => 'cards',
     ),
