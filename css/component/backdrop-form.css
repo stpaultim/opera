@@ -190,6 +190,25 @@ button.button-primary,
   margin-right: 0;
 }
 
+/* A small button, for table rows and lists, where the full-size button is
+   clumsy. Colors, corner radius and text transform still come from the
+   button settings; only the size and spacing change. */
+.button.button-small,
+input.form-submit.button-small,
+button.form-submit.button-small {
+  padding: 0.3em 0.8em;
+  margin-bottom: 0.25em;
+  margin-inline-end: 0.35em;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+[dir="rtl"] .button.button-small,
+[dir="rtl"] input.form-submit.button-small,
+[dir="rtl"] button.form-submit.button-small {
+  margin-left: 0.35em;
+  margin-right: 0;
+}
+
 .form-managed-file input.form-submit {
   margin-left: 0.5em; /* LTR */
   position: relative;
